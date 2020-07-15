@@ -1,10 +1,10 @@
 #include "tiltleitem.h"
 #include"node.h"
 #include<QtWidgets>
-tiltleItem::tiltleItem(Node*referNode,int ypos)
+tiltleItem::tiltleItem(Node*referNode)
 {
     this->m_referNode=referNode;
-    this->ypos_end=ypos-30;
+
     adjust();
 }
 
@@ -38,7 +38,7 @@ void tiltleItem::paint(QPainter *painter, const QStyleOptionGraphicsItem */*opti
     //for(int)
     QPointF from1,topoint;
     from1.setY(m_fromPoint.ry());
-    topoint.setY(ypos_end+20);
+    topoint.setY(m_toPoint.ry()-50);
     for(int i=0;i<4;i++){
         from1.setX(m_fromPoint.rx()+150+i*100);
         topoint.setX(m_fromPoint.rx()+150+i*100);

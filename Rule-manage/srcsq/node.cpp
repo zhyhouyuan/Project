@@ -3,7 +3,7 @@
 #include "link.h"
 #include "mainwindow.h"
 #include "scene.h"
-
+#include"nodeinfodialog.h"
 Node::Node(MainWindow *mindMapDlg)
 {
     this->setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
@@ -162,32 +162,32 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 //    painter->drawRect(rect2);
 //    painter->drawText(rect2, Qt::Unchecked,"√");
 }
-//void Node::showNodeInfo()
-//{
-//    QRectF rect = outlineRect();
-//    int rectW = rect.width();
-//    int rectH = rect.height();
+void Node::showNodeInfo()
+{
+    QRectF rect = outlineRect();
+    int rectW = rect.width();
+    int rectH = rect.height();
 
-//    int nodeX = this->x();
-//    int nodeY = this->y();
+    int nodeX = this->x();
+    int nodeY = this->y();
 
-//    int moveX = nodeX - rectW / 2.0;
-//    int moveY = nodeY + rectH / 2.0 + 5;
+    int moveX = nodeX - rectW / 2.0;
+    int moveY = nodeY + rectH / 2.0 + 5;
 
-//    m_nodeInfoDlg = new NodeInfoDialog(this);
-//    m_nodeScene->addWidget(m_nodeInfoDlg);
+    m_nodeInfoDlg = new NodeInfoDialog(this);
+    m_nodeScene->addWidget(m_nodeInfoDlg);
 
-//    m_nodeInfoDlg->move(moveX, moveY);
-//    m_nodeInfoDlg->show();
-//}
+    m_nodeInfoDlg->move(moveX, moveY);
+    m_nodeInfoDlg->show();
+}
 
-//void Node::closeNodeInfo()
-//{
-//    if (m_nodeInfoDlg && m_nodeInfoDlg->isVisible()) {
-//        m_nodeInfoDlg->deleteLater();
-//        m_nodeInfoDlg = NULL;
-//    }
-//}
+void Node::closeNodeInfo()
+{
+    if (m_nodeInfoDlg && m_nodeInfoDlg->isVisible()) {
+        m_nodeInfoDlg->deleteLater();
+        m_nodeInfoDlg = NULL;
+    }
+}
 void Node::hoverEnterEvent(QGraphicsSceneHoverEvent */*event*/)
 {
     //showNodeInfo();
@@ -222,15 +222,16 @@ void Node::mousePressEvent(QGraphicsSceneMouseEvent* event)
             this->nodeselet();
         }
      }
-//    if(event->button()==Qt::RightButton){
-//        QStringList list0=this->getheadname();
-//        QStringList list1;
-//        list1.append("0");
-//        for(int i=0;i<list0.count();i++){
-//            list1.append(list0.at(list0.count()-i-1));
-//        }
-    //    m_mindMapDlg->addwindowshow_node(list1);
-//    }
+    if(event->button()==Qt::RightButton){
+        QStringList list0=this->getheadname();
+        QStringList list1;
+        list1.append("0");
+        for(int i=0;i<list0.count();i++){
+            list1.append(list0.at(list0.count()-i-1));
+        }
+        m_mindMapDlg->addwindowshow_node(list1);
+        //m_mindMapDlg->show();
+    }
 }
 void Node::nodeselet(){
     if(this->isselect){

@@ -5,8 +5,8 @@
 #include<QFileDialog>
 #include <QtXml>
 #include<QSqlRecord>
-#include"changedialog.h"
-#include"checkdialog.h"
+#include"uisrc/changedialog.h"
+#include"uisrc/checkdialog.h"
 #include<QtConcurrent>
 #include<QApplication>
 viewmodel::viewmodel(QObject * parent):QAbstractTableModel(parent)

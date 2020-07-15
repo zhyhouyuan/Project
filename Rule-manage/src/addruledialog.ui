@@ -1,0 +1,1391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>addruleDialog</class>
+ <widget class="QDialog" name="addruleDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>983</width>
+    <height>552</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,1" columnstretch="0,0,0,0,1,1" rowminimumheight="0,0,0,0,0,0,0,1" columnminimumwidth="0,0,0,0,0,1">
+   <property name="spacing">
+    <number>5</number>
+   </property>
+   <item row="0" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <widget class="QPushButton" name="pp">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:5px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+       </property>
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="1">
+    <widget class="Line" name="line_5">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="Line" name="line_6">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;宋体&quot;;
+
+</string>
+       </property>
+       <property name="text">
+        <string> 条件:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
+         <item>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="spacing">
+            <number>4</number>
+           </property>
+           <item row="1" column="0" colspan="2">
+            <widget class="Gcombox" name="comboBox">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>303</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+	border: 1px solid #bebebe;
+	padding: 1px 18px 1px 3px;
+	font: normal normal 16px &quot;Microsoft YaHei&quot;;
+	color: #555555;
+	background: #FFF;
+}
+QComboBox:!editable:on, QComboBox::drop-down:editable:on{
+	background: transparent;
+}
+ 
+QComboBox:!on{
+}
+ 
+QComboBox:on{ /* the popup opens */
+	color: #555555;
+	border-color: #327cc0;
+	background: transparent;
+}
+ 
+QComboBox::drop-down{
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+}
+ 
+QComboBox::down-arrow {
+	image: url(:/common/combobox_arrow);
+}
+ 
+QComboBox::down-arrow:on {
+	image: url(:/common/combobox_arrow_up);
+}
+ 
+QComboBox QAbstractItemView {
+	outline: 0; 
+	border: 1px solid #327cc0;
+	background-color: #F1F3F3;
+	font: normal normal 14px &quot;Microsoft YaHei&quot;;
+}
+ 
+QComboBox QAbstractItemView::item {
+	height: 32px;
+	color: #555555;
+	background-color: transparent;
+}
+ 
+QComboBox QAbstractItemView::item:hover {
+	color: #FFFFFF;
+	background-color: #327cc0;
+}
+ 
+QComboBox QAbstractItemView::item:selected {
+	color: #FFFFFF;
+	background-color: #327cc0;
+}
+ 
+QComboBox QAbstractScrollArea QScrollBar:vertical {
+	background-color: #d0d2d4;
+}
+ 
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical {
+	background: rgb(160,160,160);
+}
+ 
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical:hover {
+	background: rgb(90, 91, 93);
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_if">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>30</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+
+//边界1像素 实线 颜色rgb  或者border:none 没有边界
+border:1px solid rgb(180, 180, 180);
+
+//背景的颜色
+background: rgb(230,230,230);
+//边角4像素圆滑
+
+border-radius: 4px;
+
+}
+
+//鼠标滑动到LineEditor上面的时候
+
+QLineEdit::hover
+{
+
+ //字体的颜色
+  color:green
+  border-color:rgb(50,480,40);
+  background-color:green;
+}
+</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="comboBox_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>50</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255);
+height:30px;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QComboBox" name="comboBox_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>10</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255);
+height:30px;</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>=</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QPushButton" name="undo_0">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:5px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="source.qrc">
+                 <normaloff>:/image/edit-undo.png</normaloff>:/image/edit-undo.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="redo_0">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:5px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="source.qrc">
+                 <normaloff>:/image/edit-redo.png</normaloff>:/image/edit-redo.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addcondition">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+             </property>
+             <property name="text">
+              <string>add</string>
+             </property>
+             <property name="icon">
+              <iconset resource="source.qrc">
+               <normaloff>:/image/add.png</normaloff>:/image/add.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="kh_L0">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>(</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="kh_R0">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="NOT_1">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>NOT</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="AND_1">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>AND</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="OR_1">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>OR</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="clearcondition">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>clear</string>
+           </property>
+           <property name="icon">
+            <iconset resource="source.qrc">
+             <normaloff>:/image/stock_delete.png</normaloff>:/image/stock_delete.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="2" colspan="2">
+    <widget class="Line" name="line_7">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="Line" name="line_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <property name="spacing">
+      <number>4</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;宋体&quot;;
+</string>
+       </property>
+       <property name="text">
+        <string> 结果:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,0">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetFixedSize</enum>
+           </property>
+           <property name="spacing">
+            <number>4</number>
+           </property>
+           <item row="2" column="0">
+            <widget class="QComboBox" name="comboBox_5">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>10</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>38</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255);
+height:30px;</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>=</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="Gcombox" name="comboBox_4">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+	border: 1px solid #bebebe;
+	padding: 1px 18px 1px 3px;
+	font: normal normal 16px &quot;Microsoft YaHei&quot;;
+	color: #555555;
+	background: #FFF;
+}
+QComboBox:!editable:on, QComboBox::drop-down:editable:on{
+	background: transparent;
+}
+ 
+QComboBox:!on{
+}
+ 
+QComboBox:on{ /* the popup opens */
+	color: #555555;
+	border-color: #327cc0;
+	background: transparent;
+}
+ 
+QComboBox::drop-down{
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+}
+ 
+QComboBox::down-arrow {
+	image: url(:/common/combobox_arrow);
+}
+ 
+QComboBox::down-arrow:on {
+	image: url(:/common/combobox_arrow_up);
+}
+ 
+QComboBox QAbstractItemView {
+	outline: 0; 
+	border: 1px solid #327cc0;
+	background-color: #F1F3F3;
+	font: normal normal 14px &quot;Microsoft YaHei&quot;;
+}
+ 
+QComboBox QAbstractItemView::item {
+	height: 32px;
+	color: #555555;
+	background-color: transparent;
+}
+ 
+QComboBox QAbstractItemView::item:hover {
+	color: #FFFFFF;
+	background-color: #327cc0;
+}
+ 
+QComboBox QAbstractItemView::item:selected {
+	color: #FFFFFF;
+	background-color: #327cc0;
+}
+ 
+QComboBox QAbstractScrollArea QScrollBar:vertical {
+	background-color: #d0d2d4;
+}
+ 
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical {
+	background: rgb(160,160,160);
+}
+ 
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical:hover {
+	background: rgb(90, 91, 93);
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="comboBox_6">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>50</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255);
+height:30px;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLineEdit" name="lineEdit_then">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+
+//边界1像素 实线 颜色rgb  或者border:none 没有边界
+border:1px solid rgb(180, 180, 180);
+
+//背景的颜色
+background: rgb(230,230,230);
+//边角4像素圆滑
+
+border-radius: 4px;
+
+}
+
+//鼠标滑动到LineEditor上面的时候
+
+QLineEdit::hover
+{
+
+ //字体的颜色
+
+  color:green
+  border-color:rgb(50,480,40);
+  background-color:green;
+}</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QPushButton" name="undo_1">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:5px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="source.qrc">
+                 <normaloff>:/image/edit-undo.png</normaloff>:/image/edit-undo.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="redo_1">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:5px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="source.qrc">
+                 <normaloff>:/image/edit-redo.png</normaloff>:/image/edit-redo.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addresult">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+             </property>
+             <property name="text">
+              <string>add</string>
+             </property>
+             <property name="icon">
+              <iconset resource="source.qrc">
+               <normaloff>:/image/add.png</normaloff>:/image/add.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="kh_L1">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>(</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="kh_R1">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="NOT_2">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>NOT</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="AND_2">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>AND</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="OR_2">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>OR</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="clearresult">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border:2px;
+border-radius: 10px;
+padding:10px;
+font: 12pt &quot;宋体&quot;;
+background-color:white;
+}
+QPushButton:pressed{
+                   background-color:rgba(100,255,100,200);
+                   border-color:rgba(255,255,255,30);
+                   border-style:inset;
+                   color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+                   background-color: #f26522;
+					color:#fff;
+                   };</string>
+           </property>
+           <property name="text">
+            <string>clear</string>
+           </property>
+           <property name="icon">
+            <iconset resource="source.qrc">
+             <normaloff>:/image/stock_delete.png</normaloff>:/image/stock_delete.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="2" colspan="2">
+    <widget class="Line" name="line_8">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="Line" name="line_4">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="3" colspan="3">
+    <widget class="Line" name="line_11">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="Line" name="line_10">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Agency FB&quot;;</string>
+       </property>
+       <property name="text">
+        <string>权重： </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBox_w">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Times New Roman&quot;;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="6" column="2">
+    <widget class="Line" name="line_9">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="styleSheet">
+        <string notr="true">
+font: 14pt &quot;宋体&quot;;
+
+</string>
+       </property>
+       <property name="text">
+        <string>确认</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="styleSheet">
+        <string notr="true">
+font: 14pt &quot;宋体&quot;;</string>
+       </property>
+       <property name="text">
+        <string>取消</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="7" column="1">
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="4" colspan="2">
+    <widget class="QTextEdit" name="textEdit_2">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+font: 11pt &quot;宋体&quot;;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4" colspan="2">
+    <widget class="QTextEdit" name="textEdit">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+font: 11pt &quot;宋体&quot;;</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Gcombox</class>
+   <extends>QComboBox</extends>
+   <header location="global">gcombox.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="source.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>addruleDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>870</x>
+     <y>531</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>785</x>
+     <y>413</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearcondition</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>499</x>
+     <y>261</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>840</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearresult</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit_2</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>499</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>840</x>
+     <y>479</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>addruleDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>970</x>
+     <y>531</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>891</x>
+     <y>538</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>undo_1</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit_2</receiver>
+   <slot>undo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>426</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>552</x>
+     <y>280</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>redo_1</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit_2</receiver>
+   <slot>redo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>477</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>535</x>
+     <y>345</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>undo_0</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>undo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>446</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>538</x>
+     <y>76</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>redo_0</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>redo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>497</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>538</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

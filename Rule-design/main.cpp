@@ -5,8 +5,7 @@
 #include <QtGui>
 #include<iostream>
 #include<istream>
-#include"datamanage.h"
-#include"connectionpool.h"
+
 
 //#include <QThread>
 //class MyThread : public QThread

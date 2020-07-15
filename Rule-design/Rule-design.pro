@@ -27,57 +27,61 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    addruledialog.cpp \
-    addsqltable.cpp \
-    changedialog.cpp \
-    checkdialog.cpp \
-    connectionpool.cpp \
-    datain0.cpp \
-    datamanage.cpp \
-    finddialog.cpp \
-    gcombox.cpp \
-    link.cpp \
-    logdialog.cpp \
+    src/connectionpool.cpp \
+    src/datamanage.cpp \
+    src/link.cpp \
+    src/node.cpp \
+    src/rule_fact.cpp \
+    src/viewmodel.cpp \
+    uisrc/addruledialog.cpp \
+    uisrc/addsqltable.cpp \
+    uisrc/change_wdialog.cpp \
+    uisrc/changedialog.cpp \
+    uisrc/checkdialog.cpp \
+    uisrc/datain0.cpp \
+    uisrc/finddialog.cpp \
+    uisrc/gcombox.cpp \
+    uisrc/logdialog.cpp \
+    uisrc/scene.cpp \
+    uisrc/tiltleitem.cpp \
+    uisrc/titlebar.cpp \
     main.cpp \
-    mainwindow.cpp \
-    node.cpp \
-    rule_fact.cpp \
-    scene.cpp \
-    viewmodel.cpp \
-    change_wdialog.cpp \
-    titlebar.cpp \
-    tiltleitem.cpp
+    mainwindow.cpp
+
 
 HEADERS += \
-    addruledialog.h \
-    addsqltable.h \
-    changedialog.h \
-    checkdialog.h \
-    connectionpool.h \
-    datain0.h \
-    datamanage.h \
-    finddialog.h \
-    gcombox.h \
-    link.h \
-    logdialog.h \
-    mainwindow.h \
-    node.h \
-    rule_fact.h \
-    scene.h \
-    viewmodel.h \
-    change_wdialog.h \
-    titlebar.h \
-    tiltleitem.h
+    src/connectionpool.h \
+    src/datamanage.h \
+    src/link.h \
+    src/node.h \
+    src/rule_fact.h \
+    src/viewmodel.h \
+    uisrc/addruledialog.h \
+    uisrc/addsqltable.h \
+    uisrc/change_wdialog.h \
+    uisrc/changedialog.h \
+    uisrc/checkdialog.h \
+    uisrc/datain0.h \
+    uisrc/finddialog.h \
+    uisrc/gcombox.h \
+    uisrc/logdialog.h \
+    uisrc/scene.h \
+    uisrc/tiltleitem.h \
+    uisrc/titlebar.h \
+    mainwindow.h
+
+
 
 FORMS += \
-    addruledialog.ui \
-    addsqltable.ui \
-    changedialog.ui \
-    datain0.ui \
-    finddialog.ui \
-    logdialog.ui \
-    mainwindow.ui \
-    change_wdialog.ui
+    uisrc/addruledialog.ui \
+    uisrc/addsqltable.ui \
+    uisrc/change_wdialog.ui \
+    uisrc/changedialog.ui \
+    uisrc/datain0.ui \
+    uisrc/finddialog.ui \
+    uisrc/logdialog.ui \
+    mainwindow.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

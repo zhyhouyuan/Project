@@ -1,17 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "node.h"
-#include"link.h"
+#include "src/node.h"
+#include"src/link.h"
 #include<QTextEdit>
 #include<QStack>
 #include <QSqlError>
 #include <QMessageBox>
 #include<QFileDialog>
-#include "addruledialog.h"
-#include "datamanage.h"
+#include "uisrc/addruledialog.h"
+#include "src/datamanage.h"
 #include<QtConcurrent>
 #include<QGraphicsDropShadowEffect>
-#include"titlebar.h"
+#include"uisrc/titlebar.h"
 #include <stack>
 #include<QThread>
 using namespace std;
