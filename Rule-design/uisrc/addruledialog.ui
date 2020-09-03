@@ -6,89 +6,45 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>983</width>
-    <height>552</height>
+    <width>811</width>
+    <height>505</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">border: 1px solid rgb(200, 200, 200);</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,0,0,0,1" columnstretch="0,0,0,0,1,1" rowminimumheight="0,0,0,0,0,0,0,1" columnminimumwidth="0,0,0,0,0,1">
+  <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0" columnstretch="0,0,1,1">
    <property name="spacing">
     <number>5</number>
    </property>
-   <item row="0" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
-     <item>
-      <widget class="QPushButton" name="pp">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-border:2px;
-border-radius: 10px;
-padding:5px;
-font: 12pt &quot;宋体&quot;;
-background-color:white;
-}
-QPushButton:pressed{
-                   background-color:rgba(100,255,100,200);
-                   border-color:rgba(255,255,255,30);
-                   border-style:inset;
-                   color:rgba(0,0,0,100);
-
-}
-QPushButton:hover{
-                   background-color: #f26522;
-					color:#fff;
-                   };</string>
-       </property>
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="1">
-    <widget class="Line" name="line_5">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="Line" name="line_6">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
+   <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
       <widget class="QLabel" name="label">
+       <property name="minimumSize">
+        <size>
+         <width>65</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;宋体&quot;;
-
-</string>
+        <string notr="true">font: 12pt &quot;Microsoft YaHei&quot;;
+border:none;
+border-radius: 12px;</string>
        </property>
        <property name="text">
         <string> 条件:</string>
+       </property>
+       <property name="margin">
+        <number>3</number>
        </property>
       </widget>
      </item>
@@ -295,7 +251,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
                </property>
@@ -303,7 +259,7 @@ QPushButton:hover{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="source.qrc">
+                <iconset resource="../source.qrc">
                  <normaloff>:/image/edit-undo.png</normaloff>:/image/edit-undo.png</iconset>
                </property>
                <property name="iconSize">
@@ -332,7 +288,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
                </property>
@@ -340,7 +296,7 @@ QPushButton:hover{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="source.qrc">
+                <iconset resource="../source.qrc">
                  <normaloff>:/image/edit-redo.png</normaloff>:/image/edit-redo.png</iconset>
                </property>
                <property name="iconSize">
@@ -360,7 +316,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -371,7 +327,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
              </property>
@@ -379,7 +335,7 @@ QPushButton:hover{
               <string>add</string>
              </property>
              <property name="icon">
-              <iconset resource="source.qrc">
+              <iconset resource="../source.qrc">
                <normaloff>:/image/add.png</normaloff>:/image/add.png</iconset>
              </property>
             </widget>
@@ -400,7 +356,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -411,7 +367,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -427,7 +383,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -438,7 +394,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -454,7 +410,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -465,7 +421,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -481,7 +437,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -492,7 +448,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -508,7 +464,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -519,7 +475,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -548,7 +504,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -559,7 +515,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -567,7 +523,7 @@ QPushButton:hover{
             <string>clear</string>
            </property>
            <property name="icon">
-            <iconset resource="source.qrc">
+            <iconset resource="../source.qrc">
              <normaloff>:/image/stock_delete.png</normaloff>:/image/stock_delete.png</iconset>
            </property>
           </widget>
@@ -578,46 +534,29 @@ QPushButton:hover{
      </item>
     </layout>
    </item>
-   <item row="2" column="2" colspan="2">
-    <widget class="Line" name="line_7">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="Line" name="line_3">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
+   <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <property name="spacing">
       <number>4</number>
      </property>
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="minimumSize">
+        <size>
+         <width>65</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;宋体&quot;;
-</string>
+        <string notr="true">font: 12pt &quot;Microsoft YaHei&quot;;
+border:none;
+border-radius: 12px;</string>
        </property>
        <property name="text">
         <string> 结果:</string>
+       </property>
+       <property name="margin">
+        <number>3</number>
        </property>
       </widget>
      </item>
@@ -815,7 +754,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
                </property>
@@ -823,7 +762,7 @@ QPushButton:hover{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="source.qrc">
+                <iconset resource="../source.qrc">
                  <normaloff>:/image/edit-undo.png</normaloff>:/image/edit-undo.png</iconset>
                </property>
                <property name="iconSize">
@@ -852,7 +791,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
                </property>
@@ -860,7 +799,7 @@ QPushButton:hover{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="source.qrc">
+                <iconset resource="../source.qrc">
                  <normaloff>:/image/edit-redo.png</normaloff>:/image/edit-redo.png</iconset>
                </property>
                <property name="iconSize">
@@ -880,7 +819,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -891,7 +830,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
              </property>
@@ -899,7 +838,7 @@ QPushButton:hover{
               <string>add</string>
              </property>
              <property name="icon">
-              <iconset resource="source.qrc">
+              <iconset resource="../source.qrc">
                <normaloff>:/image/add.png</normaloff>:/image/add.png</iconset>
              </property>
             </widget>
@@ -923,7 +862,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -934,7 +873,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -950,7 +889,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -961,7 +900,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -977,7 +916,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -988,7 +927,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -1004,7 +943,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -1015,7 +954,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -1031,7 +970,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -1042,7 +981,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -1071,7 +1010,7 @@ QPushButton:hover{
 border:2px;
 border-radius: 10px;
 padding:10px;
-font: 12pt &quot;宋体&quot;;
+font: 10pt &quot;Microsoft YaHei&quot;;
 background-color:white;
 }
 QPushButton:pressed{
@@ -1082,7 +1021,7 @@ QPushButton:pressed{
 
 }
 QPushButton:hover{
-                   background-color: #f26522;
+                   background-color: #4169E1;
 					color:#fff;
                    };</string>
            </property>
@@ -1090,7 +1029,7 @@ QPushButton:hover{
             <string>clear</string>
            </property>
            <property name="icon">
-            <iconset resource="source.qrc">
+            <iconset resource="../source.qrc">
              <normaloff>:/image/stock_delete.png</normaloff>:/image/stock_delete.png</iconset>
            </property>
           </widget>
@@ -1101,35 +1040,58 @@ QPushButton:hover{
      </item>
     </layout>
    </item>
-   <item row="4" column="2" colspan="2">
-    <widget class="Line" name="line_8">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
+   <item row="2" column="1" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="minimumSize">
+        <size>
+         <width>62</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Microsoft YaHei&quot;;
+
+</string>
+       </property>
+       <property name="text">
+        <string>确认</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="minimumSize">
+        <size>
+         <width>62</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Microsoft YaHei&quot;;</string>
+       </property>
+       <property name="text">
+        <string>取消</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="5" column="1">
-    <widget class="Line" name="line_4">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="3" colspan="3">
-    <widget class="Line" name="line_11">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="Line" name="line_10">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
+   <item row="2" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_9">
      <item>
       <spacer name="horizontalSpacer_4">
@@ -1146,8 +1108,15 @@ QPushButton:hover{
      </item>
      <item>
       <widget class="QLabel" name="label_3">
+       <property name="minimumSize">
+        <size>
+         <width>56</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;Agency FB&quot;;</string>
+        <string notr="true">font: 10pt &quot;Microsoft YaHei&quot;;
+border:none;</string>
        </property>
        <property name="text">
         <string>权重： </string>
@@ -1175,74 +1144,19 @@ QPushButton:hover{
      </item>
     </layout>
    </item>
-   <item row="6" column="2">
-    <widget class="Line" name="line_9">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="3" colspan="3">
-    <layout class="QHBoxLayout" name="horizontalLayout_8">
-     <item>
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="styleSheet">
-        <string notr="true">
-font: 14pt &quot;宋体&quot;;
-
-</string>
-       </property>
-       <property name="text">
-        <string>确认</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="styleSheet">
-        <string notr="true">
-font: 14pt &quot;宋体&quot;;</string>
-       </property>
-       <property name="text">
-        <string>取消</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="7" column="1">
-    <widget class="Line" name="line_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="4" colspan="2">
+   <item row="1" column="1" colspan="3">
     <widget class="QTextEdit" name="textEdit_2">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
-font: 11pt &quot;宋体&quot;;</string>
+</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="4" colspan="2">
+   <item row="0" column="1" colspan="3">
     <widget class="QTextEdit" name="textEdit">
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
-font: 11pt &quot;宋体&quot;;</string>
+</string>
      </property>
     </widget>
    </item>
@@ -1256,7 +1170,7 @@ font: 11pt &quot;宋体&quot;;</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="source.qrc"/>
+  <include location="../source.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -41,6 +41,17 @@ void Condition::print(int level) const {
 		<< "," << fields.at(2) << std::endl;
 }
 
+// 打印输出日志文件
+string Condition::print_to_log(int level) const {
+	std::string prefix = CStringOp::repeat("\t", level);
+	std::string res = "";
+	res += prefix + fields.at(0) + ","
+		+ (type == negetive ? "~" : "")
+		+ fields.at(1)
+		+ "," + fields.at(2);
+	return res;
+}
+
 // 判等
 bool Condition::operator==(const Condition & rhs) const {
 	return (fields.at(0) == rhs.fields.at(0)

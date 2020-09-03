@@ -48,11 +48,7 @@ QVariant viewmodel::setview_0(QList<QSqlTableModel*>modellist){
     modellist0=modellist;
     if(!modellist.isEmpty()){
         for(int i=0;i<modellist.count();i++){
-            //for(int j=0;j<modellist.at(i)->rowCount();j++){
-              //for(int k=0;j<modellist.at(i)->columnCount();k++)
-              //this->datalist.at(rownum+j)->append(modellist.at(i)->index(j,k).data());
-              //this->setData(index(rownum+j,k),modellist.at(i)->index(j,k).data());
-            //}
+
             rownum=rownum+modellist.at(i)->rowCount()+1;
             listnum.append(rownum);
         }
@@ -63,8 +59,12 @@ QVariant viewmodel::setview_0(QList<QSqlTableModel*>modellist){
         return QVariant();
     }
 
-    else currentf=0;
+    else {
+        listnum.append(0);
+        currentf=0;
+        this->updata();
         return QVariant();
+        }
 }
 void viewmodel::updata(){
     beginResetModel();
@@ -171,12 +171,12 @@ QVariant viewmodel::data(const QModelIndex &index, int role) const{
         if(disflag){
             if(index.row()==0){
                 //QColor(187, 212, 238);
-                return QColor(230,240,240);
+                return QColor(220,220,220);
             }
             else{
                 for(int i=0;i<listnum.count();i++){
                     if(index.row()==listnum.at(i)){
-                        return QColor(230,240,240);
+                        return QColor(220,220,220);
                     }
                 }
               return QColor(255,255,255);
@@ -235,7 +235,9 @@ bool viewmodel::submit_W(){
                 modelout->setTable(modellist0.at(ik)->tableName());
                 modelout->select();
                 modelout->setData(modelout->index(num,3),modellist0.at(ik)->record(num).value(3).toInt());
-                modelout->submitAll();
+                if(modelout->submitAll()){
+                    qDebug()<<tr("提交成功");
+                }
              }
          }
     }
@@ -486,7 +488,6 @@ bool viewmodel::setrecord(QSqlRecord record0,int row){
 }
 bool viewmodel::submit_checked(){
     QMap<int, Qt::CheckState>::iterator it; //遍历map
-    qDebug()<<this->check_state_map;
     for ( it = this->check_state_map.begin(); it != this->check_state_map.end(); ++it )
     {
         if(it.value()==Qt::Checked){
@@ -507,10 +508,8 @@ bool viewmodel::submit_checked(){
                         num=k-listnum.at(i-1)-1;
                         break;
                     }
-                   //return 0;
                   }
             }
-            //qDebug()<<flag_c;
             if(flag_c){
                 QSqlTableModel* modelout=new QSqlTableModel(this,modellist0.at(ik)->database());
                 modelout->setTable(modellist0.at(ik)->tableName());
@@ -528,7 +527,6 @@ bool viewmodel::submit_checked(){
                     this->sub_fact(modellist0.at(ik)->record(num).value(2).toString(),1);
 
                     QSqlRecord recored0=modellist0.at(ik)->record(num);
-                    //qDebug()<<recored0.value(1);
                     for(int j=num;j>modelout->rowCount();j--){
                         modellist0.at(ik)->setRecord(j, modellist0.at(ik)->record(j-1));
                         modellist0.at(ik)->setData(modellist0.at(ik)->index(j,0),j+1);
@@ -542,8 +540,12 @@ bool viewmodel::submit_checked(){
                     //bool flag0=modellist0.at(ik)->moveRow(modelout->rowCount(),num);
                     bool flag=modelout->insertRecord(modelout->rowCount(),recored0);
                     bool flag2=modelout->setData(modelout->index(modelout->rowCount()-1,0),modelout->rowCount());
-
-                    qDebug()<<flag<<flag2<<num;
+                    if(flag&&flag2){
+                        qDebug()<<tr("提交到数据库成功,规则:%1").arg(modelout->rowCount());
+                    }
+                    else{
+                        qWarning()<<tr("规则提交失败");
+                    }
                 }
                 modelout->submitAll();
              }
@@ -571,7 +573,6 @@ void viewmodel::sub_fact(QString ch,bool ad_de){
     if(ad_de){
         for(int i=0;i<list1.count();i++){
             int rownum=subfact->findfactIndex(list1.at(i).toInt());
-            qDebug()<<rownum<<"aaa";
             if(rownum==-1){
                 int num1=subfact->model_fact->rowCount();
                 subfact->model_fact->insertRow(num1);
@@ -596,11 +597,8 @@ void viewmodel::sub_fact(QString ch,bool ad_de){
 
     }
     else{
-        //int rownum=subfact->findfactIndex(list1.at(0).toInt());
-        //if(rownum!=-1){
         for(int i=0;i<list1.count();i++){
             subfact->removefact(list1.at(i).toInt());
-       // }
             subfact->submit();
             subfact->model_fact->select();
         }
@@ -658,8 +656,6 @@ QString viewmodel::ChtoEnl(QString ch)const{
                 for(int i=0;i<EntoCh->rowCount();i++){
                     QSqlRecord record0=EntoCh->record(i);
                     if(enlist.at(num0)==record0.value(2).toString()){
-                        //ch.replace(record0.value(2).toString(),record0.value(1).toString());
-                        //qDebug()<<enlist.at(num0)
                         ch.replace(postion,enlist.at(num0).count(),record0.value(1).toString());
                         len=record0.value(1).toString().count();
                         break;
@@ -798,7 +794,7 @@ void viewmodel::WriteXml(QString dirPath){
     {
         if(it.value()==Qt::Checked){
             int k=it.key();
-            if(k<=listnum.at(0)&&k>0){
+            if(k<listnum.at(0)&&k>0){
                 QDomElement rulesubbase;
                   if(!list_num.contains(0)){
                       list_num.append(0);
@@ -822,7 +818,7 @@ void viewmodel::WriteXml(QString dirPath){
           else{
                 int hn=0;
                 for(int i=1;i<listnum.count();i++){
-                  if(k<=listnum.at(i)&&k>listnum.at(i-1)){
+                  if(k<listnum.at(i)&&k>listnum.at(i-1)){
                       hn=i;
                   }
                 }
@@ -890,8 +886,10 @@ void viewmodel::addxmlnode(QDomDocument doc,QDomElement node,QString data_0,QStr
         condition.setAttribute("relation",list0.at(3));
         condition.setAttribute("id",iii);
         int index=list0.at(1).indexOf(".");
-        condition.setAttribute("val",list0.at(1).left(index));
-        condition.setAttribute("res",list0.at(1).right(list0.at(1).length()-index)+list0.at(2));
+        condition.setAttribute("var",list0.at(1).left(index));
+        condition.setAttribute("prop",list0.at(1).right(list0.at(1).length()-index)+list0.at(2));
+
+
     }
 }
 void viewmodel::add_div_rule(QDomDocument doc, QSqlRecord record_out,QDomElement node){
@@ -909,7 +907,7 @@ void viewmodel::add_div_rule(QDomDocument doc, QSqlRecord record_out,QDomElement
             QDomElement Rule_then=doc.createElement("rhs"); //创建子元素
             this->addxmlnode(doc,Rule_then,this->transRule(list_or2.at(j),1),"action");
             rule.appendChild(Rule_then);
-            QDomElement Rule_W=doc.createElement("wight"); //创建子元素
+            QDomElement Rule_W=doc.createElement("weight"); //创建子元素
             QDomText text2;
             text2=doc.createTextNode(record_out.value(3).toString());
             Rule_W.appendChild(text2);

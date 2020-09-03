@@ -147,11 +147,18 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
         isselect=0;
     }
     switch(nodecolor){
-        case 0:painter->setBrush(QColor(255,205,250));break;
-        case 1:painter->setBrush(QColor(255,255,50));break;
-        case 2:painter->setBrush(QColor(55,255,250));break;
-        case 3:painter->setBrush(QColor(200,200,200));break;
-        case 4:painter->setBrush(QColor(100,100,255));break;
+        case 0:painter->setBrush(QColor(255,99,71));break;
+        case 1:painter->setBrush(QColor(255,106,106));break;
+        case 2:painter->setBrush(QColor(250,128,114));break;
+        case 3:painter->setBrush(QColor(255,160,122));break;
+        case 4:painter->setBrush(QColor(233,150,122));break;
+
+        case 6:painter->setBrush(QColor(30,144,255));break;
+        case 7:painter->setBrush(QColor(0,191,255));break;
+        case 8:painter->setBrush(QColor(135,206,235));break;
+        case 9:painter->setBrush(QColor(135,206,250));break;
+        case 10:painter->setBrush(QColor(176,224,230));break;
+
         case 233:painter->setBrush(QColor(255,48,48));break;
        default:painter->setBrush(QColor(255,255,255));break;
     }

@@ -21,7 +21,6 @@ addruleDialog::addruleDialog(QWidget *parent) :
     model_then->setHorizontalHeaderLabels(QStringList("选择"));
     //ui->treeWidget->addTopLevelItem("3");
     //ui->comboBox->setModel(ui->treeWidget->model());
-    ui->pp->setText("Read XML");
     //connect(ui->pp,SIGNAL(clicked()),this,SLOT(LoadClassifyFile()));
     connect(ui->addcondition,SIGNAL(clicked()),this,SLOT(addcondition()));
     connect(ui->addresult,SIGNAL(clicked()),this,SLOT(addresult()));
@@ -122,7 +121,6 @@ void addruleDialog::LoadClassifyFile(){
         node=node.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多
     }
     this->ui->comboBox->setCText("名称");
-    //this->ui->comboBox_4->setCText("名称");
     this->ui->comboBox_4->setCText("接收ID");
     this->setLine_if();
     this->setLine_then();
@@ -130,26 +128,29 @@ void addruleDialog::LoadClassifyFile(){
 void addruleDialog::additem(QDomNode itemnode,QStandardItem *item0){
     QStringList list0;
     list0<<"数据类型"<<"单位"<<"最大值"<<"最小值";
+
     if(itemnode.isElement()) //如果节点是元素
     {
+
        //QDomElement e=itemnode.toElement(); //转换为元素，注意元素和节点是两个数据结构，其实差不多
         QDomNodeList list=itemnode.childNodes();
         for(int i=0;i<list.count();i++) //遍历子元素，count和size都可以用,可用于标签数计数
         {
             QDomNode n=list.at(i);
-            if(n.isElement()){
+           // if(n.isElement()){
                  QDomElement en=n.toElement();
                  QStandardItem* item2;
                  if(en.tagName()=="状态变量"||en.tagName()=="参数"){
                      QList<QStandardItem*>aItemlist0;
                       item2 = new QStandardItem(en.attribute("中文名称"));
                       aItemlist0<<item2;
-                      for(int i=0;i<list0.count();i++)
+                      for(int j=0;j<list0.count();j++)
                        {
-                            QStandardItem* aItem=new QStandardItem(en.attribute(list0.at(i))); //创建Item
+                            QStandardItem* aItem=new QStandardItem(en.attribute(list0.at(j))); //创建Item
                             aItemlist0<<aItem;   //添加到容器
                        }
                       item0->appendRow(aItemlist0);
+
                       this->addfuhedataitem(item2);
 
                  }
@@ -172,7 +173,7 @@ void addruleDialog::additem(QDomNode itemnode,QStandardItem *item0){
 //                                          Qt::TextColorRole);                //QVariant v(0);               // item2->setData(v, Qt::UserRole - 1);
 //}
             }
-        }
+       // }
     }
 }
 void addruleDialog::addfuhedataitem(QStandardItem *item){
@@ -183,34 +184,43 @@ void addruleDialog::addfuhedataitem(QStandardItem *item){
     while(node.toElement().tagName()!="自定义数据类型"){
         node=node.nextSibling();
     }
-    QDomNode node2=node.firstChild().nextSibling().firstChild();;//复合数据类型
+
+    QDomNode node2=node.firstChild().nextSibling().firstChild();//复合数据类型
     while(!node2.isNull())  //如果节点不空
     {
+
         if(node2.isElement()) //如果节点是元素
         {
             QDomElement e=node2.toElement(); //转换为元素，注意元素和节点是两个数据结构，其实差不多
+
             if(e.attribute("中文名称")==item->text()){
+
                 QDomNodeList list=e.childNodes();
                 for(int i=0;i<list.count();i++){
                     QList<QStandardItem*>aItemlist0;
                      QStandardItem*item2 = new QStandardItem(list.at(i).toElement().attribute("中文名称"));
                      aItemlist0<<item2;
-                     for(int i=0;i<list0.count();i++)
+                       for(int j=0;j<list0.count();j++)
                        {
-                           QStandardItem* aItem=new QStandardItem(list.at(i).toElement().attribute(list0.at(i))); //创建Item
+                           QStandardItem* aItem=new QStandardItem(list.at(i).toElement().attribute(list0.at(j))); //创建Item
                            aItemlist0<<aItem;   //添加到容器
+                          // qDebug()<<aItem->text()<<"这是吗";
                        }
                      item->appendRow(aItemlist0);
                 }
                 //ui->comboBox_3->setCurrentText(datain_0->getalltext());
             }
             break;
-        }
-        break;
+       }
+       // break;
         node2=node2.nextSibling(); //下一个兄弟节点,nextSiblingElement()是下一个兄弟元素，都差不多
     }
 }
 void addruleDialog::addcondition(){
+    if(ui->comboBox_3->currentText().isEmpty()){
+        QMessageBox::warning(nullptr,QString("提示"),QString("值不可为空"));
+        return;
+    }
     QString  danw=model->data(ui->comboBox->myview->currentIndex().siblingAtColumn(2)).toString();
     QString condition=ui->lineEdit_if->text()+ui->comboBox->currentText()+ui->comboBox_2->currentText()+ui->comboBox_3->currentText()+danw;
     this->appendMessage(condition,0);
@@ -245,12 +255,12 @@ void addruleDialog::addresult(){
 //    }
 //}
 void addruleDialog::add_AND1(){
-      //ui->textEdit->append("AND");
-      this->appendMessage("AND",0);
+      ui->textEdit->append("AND");
+      //this->appendMessage("AND",0);
 }
 void addruleDialog::add_AND2(){
-      //ui->textEdit_2->append("AND");
-    this->appendMessage("AND",1);
+      ui->textEdit_2->append("AND");
+    //this->appendMessage("AND",1);
 }
 void addruleDialog::add_NOT1(){
       //ui->textEdit->append("AND");
@@ -261,10 +271,12 @@ void addruleDialog::add_NOT2(){
     this->appendMessage("NOT",1);
 }
 void addruleDialog::add_OR1(){
-      this->appendMessage("OR",0);
+      ui->textEdit->append("OR");
+     // this->appendMessage("OR",0);
 }
 void addruleDialog::add_OR2(){
-      this->appendMessage("OR",1);
+    ui->textEdit_2->append("OR");
+      //this->appendMessage("OR",1);
 }
 void addruleDialog::addkh_L0(){
      // ui->textEdit->insertPlainText("(");
@@ -327,9 +339,13 @@ void addruleDialog::setLine_if(){
     ui->lineEdit_if->setText(text1);
     QString name=ui->comboBox->currentText();
     QString datatype=model->data(ui->comboBox->myview->currentIndex().siblingAtColumn(1)).toString();
+
     if(datatype=="string"||datatype=="double"||datatype=="int"){
+
         ui->comboBox_2->addItem("<");
         ui->comboBox_2->addItem(">");
+        ui->comboBox_2->addItem(">=");
+        ui->comboBox_2->addItem("<=");
         ui->comboBox_3->setEditable(true);
     }
     else{
@@ -347,7 +363,6 @@ void addruleDialog::setLine_if(){
                 QDomElement e=node1.toElement(); //转换为元素，注意元素和节点是两个数据结构，其实差不多
                 if(e.attribute("中文名称")==name){
                     QDomNodeList list=e.childNodes();
-
                     for(int i=0;i<list.count();i++){
                         ui->comboBox_3->addItem(list.at(i).toElement().attribute("中文名称"));
                     }
@@ -377,6 +392,8 @@ void addruleDialog::setLine_then(){
     ifthenflag=1;
     QString text1=ui->comboBox_4->getParent();
     ui->lineEdit_then->setText(text1);
+    ui->comboBox_5->clear();
+    ui->comboBox_5->addItem("=");
     ui->comboBox_6->clear();
     ui->comboBox_6->clearEditText();
     QDomElement root=doc.documentElement(); //返回根节点
@@ -385,6 +402,8 @@ void addruleDialog::setLine_then(){
     if(datatype=="string"||datatype=="double"||datatype=="int"){
         ui->comboBox_5->addItem("<");
         ui->comboBox_5->addItem(">");
+        ui->comboBox_5->addItem(">=");
+        ui->comboBox_5->addItem("<=");
         ui->comboBox_6->setEditable(true);
     }
     else{

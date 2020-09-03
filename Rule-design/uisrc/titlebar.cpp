@@ -15,7 +15,7 @@
 TitleBar::TitleBar(QWidget *parent)
     : QWidget(parent)
 {
-    setFixedHeight(50);
+    setFixedHeight(40);
 
 
     m_pIconLabel = new QLabel(this);
@@ -24,18 +24,18 @@ TitleBar::TitleBar(QWidget *parent)
     m_pMaximizeButton = new QPushButton(this);
     m_pCloseButton = new QPushButton(this);
 
-    m_pIconLabel->setFixedSize(40, 40);
+    m_pIconLabel->setFixedSize(25, 25);
     m_pIconLabel->setScaledContents(true);
 
     m_pTitleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     QFont font2;
-    font2.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
-    font2.setPointSize(14);
+    font2.setFamily(QString::fromUtf8("Microsoft YaHei"));
+    font2.setPointSize(10);
     m_pTitleLabel->setFont(font2);
 
-    m_pMinimizeButton->setFixedSize(40, 40);
-    m_pMaximizeButton->setFixedSize(40, 40);
-    m_pCloseButton->setFixedSize(40, 40);
+    m_pMinimizeButton->setFixedSize(30, 30);
+    m_pMaximizeButton->setFixedSize(30, 30);
+    m_pCloseButton->setFixedSize(30, 30);
 
     m_pTitleLabel->setObjectName("whiteLabel");
 
@@ -69,7 +69,7 @@ TitleBar::TitleBar(QWidget *parent)
     //this->setContentsMargins(5,0,0,0);
 
     setLayout(pLayout);
-    qDebug()<<this->size()<<m_pCloseButton->x()<<m_pCloseButton->size();
+   // qDebug()<<this->size()<<m_pCloseButton->x()<<m_pCloseButton->size();
     connect(m_pMinimizeButton, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
     connect(m_pMaximizeButton, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
     connect(m_pCloseButton, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
@@ -194,8 +194,8 @@ void TitleBar::paintEvent(QPaintEvent *event)
     path.setFillRule(Qt::WindingFill);
     path.addRect(0, 0, this->width(), this->height());
     painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.fillPath(path, QBrush(QColor(173, 202, 232)));
-    QColor color(173, 202, 232);
+    painter.fillPath(path, QBrush(QColor(255,255,255)));
+    QColor color(255, 255, 255);
     for (int i = 0; i<10; i++)
     {
         QPainterPath path;

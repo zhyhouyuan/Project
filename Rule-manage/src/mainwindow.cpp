@@ -26,39 +26,33 @@ MainWindow::MainWindow(QWidget *parent) :
       changewindow=new changeDialog(this);
       add_table0=new addsqltable(this);
       boundaryWidth=4;
-      setWindowFlags(Qt::FramelessWindowHint);
-      //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
-      //setAttribute(Qt::WA_TranslucentBackground);
-      pTitlebar = new TitleBar(this);
-      pTitlebar->setObjectName("m_Titlebar");
-     installEventFilter(pTitlebar);
-      QVBoxLayout *pLayout = new QVBoxLayout();
-        pLayout->addWidget(pTitlebar);
-         pLayout->addStretch();
-         pLayout->setSpacing(0);
-         pLayout->setContentsMargins(0, 0, 0, 0);
-      //pLayout->addLayout(ui->verticalLayout_9,1);
-      ui->verticalLayout->insertLayout(0,pLayout);
-      ui->verticalLayout->setContentsMargins(0,0,0,0);
-      ui->verticalLayout->setStretch(1,1);
-      ui->verticalLayout->setSpacing(1);
+//      setWindowFlags(Qt::FramelessWindowHint);
+//      //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
+//      //setAttribute(Qt::WA_TranslucentBackground);
+//      pTitlebar = new TitleBar(this);
+//      pTitlebar->setObjectName("m_Titlebar");
+//      installEventFilter(pTitlebar);
+//      QVBoxLayout *pLayout = new QVBoxLayout();
+//        pLayout->addWidget(pTitlebar);
+//         pLayout->addStretch();
+//         pLayout->setSpacing(0);
+//         pLayout->setContentsMargins(0, 0, 0, 0);
+//      //pLayout->addLayout(ui->verticalLayout_9,1);
+//      ui->verticalLayout->insertLayout(0,pLayout);
+//      ui->verticalLayout->setContentsMargins(0,0,0,0);
+//      ui->verticalLayout->setStretch(1,1);
+//      ui->verticalLayout->setSpacing(1);
       setWindowTitle(tr("规则库管理工具"));
       QGraphicsDropShadowEffect *pEffect = new QGraphicsDropShadowEffect(this);
-       pEffect->setOffset(0, 0);
+      pEffect->setOffset(0, 0);
       pEffect->setColor(QColor(QStringLiteral("black")));
       pEffect->setBlurRadius(30);
       this->setGraphicsEffect(pEffect);
       menuflag=1;
-      ui->m_slider->setMinimum(-20);  // 最小值
-      ui->m_slider->setMaximum(20);  // 最大值
-      ui->m_slider->setSingleStep(1); // 步长
-      ui->m_slider->setValue(0); // 步长
       adjust_n=0;//节点图大小参数
       rootflag=1;
-      //ui->listView->(false);
-      //ui->listWidget->setCo(QColor(32, 53, 74));
-      //ui->listView->setColorBg(QColor(52, 73, 94), QColor(24, 189, 155), QColor(24, 189, 155, 150));
-      //ui->listView->setColorText(QColor(254, 255, 255), QColor(252, 252, 252), QColor(0, 0, 0));
+      loadfile=0;
+     m_slider=new QSlider(Qt::Horizontal,ui->graphicsView);
      ui->stackedWidget->setCurrentIndex(0);
      QObject::connect(ui->addputton, SIGNAL(clicked()), this, SLOT(addwindowshow()));
      QObject::connect(ui->findputton, SIGNAL(clicked()), this, SLOT(m_findshow()));
@@ -68,10 +62,10 @@ MainWindow::MainWindow(QWidget *parent) :
      QObject::connect(ui->returnputton, SIGNAL(clicked()), this, SLOT(m_change_clicked()));
      QObject::connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(m_find_clicked()));
      //QObject::connect(m_findwindow, SIGNAL(sendflag(bool)), this, SLOT(m_find_clicked()));
-     QObject::connect(ui->m_slider, SIGNAL(valueChanged(int)), this, SLOT(adjustscene(int)));
+     QObject::connect(m_slider, SIGNAL(valueChanged(int)), this, SLOT(adjustscene(int)));
      QObject::connect(ui->addputton_2, SIGNAL(clicked()), this, SLOT(m_logshow()));
      QObject::connect(m_logwindow, SIGNAL(sendflag(bool)), this, SLOT(rulebaseload()));
-     QObject::connect(m_logwindow, SIGNAL(sendclose_flag(bool)), this, SLOT(close()));
+     QObject::connect(ui->loadfile, SIGNAL(clicked()), this, SLOT(LoadClassifyFile()));
      QObject::connect(ui->outputfile, SIGNAL(clicked()), this, SLOT(m_out_clicked()));
      QObject::connect(ui->re_chose, SIGNAL(clicked()), this, SLOT(oncheck_clicked()));
      QObject::connect(ui->checkall, SIGNAL(clicked()), this, SLOT(oncheckall_clicked()));
@@ -99,6 +93,16 @@ MainWindow::MainWindow(QWidget *parent) :
      ui->graphicsView->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
      ui->tableView_2->setContextMenuPolicy(Qt::CustomContextMenu);
 
+     //m_slider->setWindowFlag(Qt::WindowStaysOnTopHint);
+     //m_slider->setTickPosition()
+     //m_slider->s
+     m_slider->setMinimum(-20);  // 最小值
+     m_slider->setMaximum(20);  // 最大值
+     m_slider->setSingleStep(1); // 步长
+     m_slider->setValue(0); // 步长
+     m_slider->resize(100,30);
+     //sliderbox->resize(20,100);
+     m_slider->move(10,10);
      //connect(ui->tableView_2, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onUpdateContextMenu(QPoint)));
      createActions();
      initViewActions();
@@ -130,15 +134,15 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::open_close(int flag){
     if(flag==Qt::Checked){
         ui->group_edit->show();
-        ui->checkall->show();
-        ui->re_chose->show();
-        ui->checkBox->show();
+       // if(rootflag==0){
+            ui->checkall->show();
+            ui->re_chose->show();
+            ui->checkBox->show();
+       // }
         //m_topMenu->show();
         m_topMenu->setEnabled(1);
         myviewmodel->open_close=1;
-
         connect(ui->tableView_2, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onUpdateContextMenu(QPoint)));
-
         ui->checkBox->setCheckState(Qt::Unchecked);
         //m_topMenu->setEnabled(1);
     }
@@ -159,8 +163,8 @@ void MainWindow::open_close(int flag){
 }
 void MainWindow::Returnroottable(){
     model_display.clear();
-    modelroot->setTable("test1");
-    modelroot->select();
+    //modelroot->setTable("test1");
+    //modelroot->select();
     myviewmodel->Tablehead.clear();
     myviewmodel->disflag=0;
     model_display.append(modelroot);
@@ -181,7 +185,7 @@ void MainWindow::rulebaseload(){
     m_nodeQueue.clear();
     m_link.clear();
     this->T_item.clear();
-    currentTablename="test1";
+    currentTablename="rulebase";
 
    // ui->checkBox_2->setCheckState(Qt::Unchecked);
 
@@ -194,7 +198,7 @@ void MainWindow::rulebaseload(){
     db=ConnectionPool::openConnection_2(filePath,username,pssw);
     if(!db.open()){
         QMessageBox::warning(this,QString("提示!"),QString("连接数据库错误"));
-        //m_logwindow->show();
+        qWarning()<<QString("连接数据库错误，请修改配置文件");
     }
     else{
         m_logwindow->close();
@@ -213,9 +217,8 @@ void MainWindow::rulebaseload(){
         if(modelroot){
             modelin.clear();
             model_display.clear();
-            modelroot->setTable("test1");
+            modelroot->setTable(currentTablename);
             modelroot->setEditStrategy(QSqlTableModel::OnManualSubmit);
-            //modelin.at(0)->setEditStrategy(QSqlTableModel::OnManualSubmit);
             modelroot->select();
             modelin.append(modelroot);
             model_display.append(modelroot);
@@ -225,7 +228,7 @@ void MainWindow::rulebaseload(){
             ui->r_return->setDisabled(0);
             addtable(m_nodeQueue.first(),1);
         }
-        LoadClassifyFile();
+        //LoadClassifyFile();
         if(!ui->checkBox_2->isEnabled()){
             ui->checkBox_2->setEnabled(1);
         }
@@ -242,8 +245,7 @@ void MainWindow::rulebaseload(){
 //    ui->returnputton->setEnabled(true);
 }
 void MainWindow::LoadClassifyFile(){
-    QString filePath = QFileDialog::getOpenFileName(this,tr("加载态势描述文件")," ", tr("XML files (*.xml);;ALL files (*.*)"));
-    //QDomDocument doc;
+    QString filePath = QFileDialog::getOpenFileName(this,tr("加载态势文件")," ", tr("XML files (*.xml);;ALL files (*.*)"));
     QList<QStandardItem*>aItemlist;
     QFile file(filePath); //相对路径、绝对路径、资源路径都行
     if(!file.open(QFile::ReadOnly))
@@ -254,41 +256,21 @@ void MainWindow::LoadClassifyFile(){
         return;
     }
     file.close();
-    addwindow->doc=doc;
-    changewindow->doc=doc;
-    addwindow->LoadClassifyFile();
-
     QDomElement root=doc.documentElement(); //返回根节点
     QDomNode node=root.firstChild(); //获得第一个子节点
-    addCHtoEN(node.toElement());
-//    while(!node.isNull())  //如果节点不空
-//    {
-//        if(node.isElement()) //如果节点是元素
-//        {
-//            QDomElement e=node.toElement(); //转换为元素，注意元素和节点是两个数据结构，其实差不多
-//            if(!e.attribute("中文名称").isEmpty()){
-//               // QSqlRecord record;
-//               for(int i=0;i<myviewmodel->EntoCh->rowCount();i++){
-//                   //myviewmodel->EntoCh->
-//                   myviewmodel->EntoCh->setFilter(QString("chname=%1").arg(e.attribute("中文名称")));
-//                   if(!myviewmodel->EntoCh->select()){
-//                      int rowNum = myviewmodel->EntoCh->rowCount(); //获得表的行数
-//                      int id = rowNum;
-//                      myviewmodel->EntoCh->insertRow(rowNum); //添加一行
-//                      myviewmodel->EntoCh->setData(myviewmodel->EntoCh->index(rowNum,0),id);
-//                      myviewmodel->EntoCh->setData(myviewmodel->EntoCh->index(rowNum,1),e.attribute("映射名称"));
-//                      myviewmodel->EntoCh->setData(myviewmodel->EntoCh->index(rowNum,2),e.attribute("中文名称"));
-//                   }
-//                   //myviewmodel->EntoCh->record(i).value(1).toString();
-//            }
-//            }
-//        }
-//        node=node.nextSibling();
-//    }
+    if(root.tagName()=="模型描述"&&!node.isNull()){
+        changewindow->doc=this->doc;
+        addwindow->doc=this->doc;
+        addwindow->LoadClassifyFile();
+        addCHtoEN(node.toElement());
+        this->loadfile=1;
+    }
+    else{
+        QMessageBox::warning(this,QString("提示，文件内容不符"),QString("请加载正确的态势文件"));
+    }
 }
 void MainWindow::addCHtoEN(QDomElement root)
 {
-     //qDebug()<<"aa";
    QDomNode node = root.firstChild();
     while (!node.isNull())
     {
@@ -323,7 +305,6 @@ void MainWindow::addCHtoEN(QDomElement root)
             }
             addCHtoEN(e);
         }
-
         node = node.nextSibling();
    }
 }
@@ -349,14 +330,13 @@ void MainWindow::oncheckall_clicked(){
 void MainWindow::m_out_clicked(){
     QString dirPath;//创建文件夹路径
      QString filePath;//存储保存路径
-     //QString saveName="mydb.sql";//保存图片名字
      QDateTime time = QDateTime::currentDateTime();//获取系统现在的时间
      QString str = time.toString("yyyyMMdd_hhmmss"); //设置显示格式
     //filePath = QFileDialog::getExistingDirectory(this,"");//获取文件夹路径
     dirPath=QFileDialog::getSaveFileName(this,"导出规则文件","/rule_out.xml","XMl(.xml)");
     QString XmlFilename=  "test.xml";
     myviewmodel->WriteXml(dirPath);
-        //po->waitForStarted();
+     qDebug()<<tr("导出规则文件，路径：%1").arg(dirPath);
 }
 void MainWindow::ruledsp(){
     Node *node1 = new Node(this);
@@ -413,7 +393,6 @@ void MainWindow::hideheadname(){
     if(myviewmodel->disflag){
         if(flag==Qt::Checked){
             ui->tableView_2->hideRow(0);
-         //   qDebug()<<myviewmodel->listnum;
             for(int i=1;i<=myviewmodel->listnum.back();i++){
                 if(myviewmodel->listnum.contains(i)){
                         ui->tableView_2->hideRow(i);
@@ -424,7 +403,7 @@ void MainWindow::hideheadname(){
             }
         }
         else if(flag==Qt::Unchecked){
-          //  qDebug()<<ui->tableView_2->isRowHidden(0)<<myviewmodel->rowcount;
+
             for(int i=0;i<=myviewmodel->listnum.back();i++){
                      ui->tableView_2->showRow(i);
             }
@@ -502,17 +481,17 @@ void MainWindow::adjustnode(){
          for(int j=0;j<link_list1.count();j++){
               pos=pos+40;
               nodelist.removeOne(link_list1.at(j)->getToNode());
-              link_list1.at(j)->getToNode()->setPos(500,pos);
+              link_list1.at(j)->getToNode()->setPos(750,pos);
               link_list1.at(j)->getToNode()->setBasePoint(link_list1.at(j)->getToNode()->pos());
           }
           nodelist2.append(cnode);
-          cnode->setPos(400,(cnode->getLinksTo().first()->getToNode()->y()+cnode->getLinksTo().last()->getToNode()->y())/2);
+          cnode->setPos(600,(cnode->getLinksTo().first()->getToNode()->y()+cnode->getLinksTo().last()->getToNode()->y())/2);
     }
     while(!nodelist2.isEmpty()){
         if(nodelist2.first()->getLinkFrom()){
         Node*cnode2=nodelist2.first()->getLinkFrom()->getFromNode();
         if(cnode2){
-            cnode2->setPos(cnode2->getLinksTo().first()->getToNode()->x()-100,(cnode2->getLinksTo().first()->getToNode()->y()+cnode2->getLinksTo().last()->getToNode()->y())/2);
+            cnode2->setPos(cnode2->getLinksTo().first()->getToNode()->x()-150,(cnode2->getLinksTo().first()->getToNode()->y()+cnode2->getLinksTo().last()->getToNode()->y())/2);
             for(int j=0;j<cnode2->getLinksTo().count();j++){
                 nodelist2.removeOne(cnode2->getLinksTo().at(j)->getToNode());
             }
@@ -531,16 +510,15 @@ void MainWindow::m_submit_clicked()//提交
         if (modelroot->submitAll()) {
             modelroot->database().commit(); //
                 m_scene->clear();
-            //qDeleteAll(m_nodeQueue);//.........................
                 m_nodeQueue.clear();
                 m_link.clear();
                 this->ruledsp();
-
-
+                 qDebug()<<QString("提交到数据库：success");
         } else {
             modelroot->database().rollback(); //
             QMessageBox::warning(this, tr("tableModel"),
                                  tr("database error: %1").arg(modelroot->lastError().text()));
+            qWarning()<<tr("提交的数据库错误：%1").arg(modelroot->lastError().text());
         }
     }
     else{
@@ -572,35 +550,29 @@ void MainWindow::m_dismiss_clicked() //撤销
      modelin.at(i)->select();
     }
     myviewmodel->rulefact->model_fact->select();
-    myviewmodel->setview(myviewmodel->modellist0);
+    myviewmodel->setview(myviewmodel->modellist0);\
+    qDebug()<<QString("撤销未提交到数据库的修改");
 }
-void MainWindow::m_find_clicked() //查询
-{
-    if(findnode5){
-        //findnode5->setSelected(1);
-        this->changeTable(findnode5);
-    }
-//    int curRow = ui->tableView_2->currentIndex().row();
-//    myviewmodel->getrecord(curRow);
-//    //menuflag=0;
-//    QList<QString> name = m_findwindow->getfindtext();
-//    m_findwindow->close();
-//    bool fa=myviewmodel->findrecord(name);
-//    if(fa==0){
-//        QMessageBox::warning(this, tr("result"),
-//                             tr("can't find rule"));
+//void MainWindow::m_find_clicked() //查询
+//{
+//    if(findnode5){
+//        this->changeTable(findnode5);
 //    }
-}
+//}
 void MainWindow::m_change_clicked() //修改
 {
     int row=ui->tableView_2->currentIndex().row();
     QSqlRecord record0=myviewmodel->getrecord(row);
+    if(loadfile==0){
+        this->LoadClassifyFile();
+        return;
+    }
     if(!record0.isEmpty()){
         changewindow->show();
         changewindow->setRuleData(&record0);
         changewindow->combox_rn();
     }
-   // changewindow->show();
+    // changewindow->show();
     //changewindow->setRuleData(&record0);
 
 }
@@ -618,34 +590,71 @@ void MainWindow::changerule(){
             myviewmodel->transRule(thentext,3);
 
             QMessageBox::warning(this,QString("提示!"),QString("修改成功！"));
+            qDebug()<<QString("修改规则成功！")<<QString("修改的记录：")<<record0;
         }
         else{
             QMessageBox::warning(this,QString("提示!"),QString("修改失败，规则重复或规则无改动"));
-        }
+            qWarning()<<QString("修改失败，规则重复或规则无修改");
 
+        }
     }
+}
+void MainWindow::removeNode(Node*node){
+    bool flagg=0;
+    int ok = QMessageBox::warning(this,QString("提示!"),QString("确定删除"+node->getText()+"？"),
+                         QMessageBox::Yes,QMessageBox::No);
+    if(ok==QMessageBox::Yes){
+    for(int i=0;i<modelroot->rowCount();i++){
+        if(modelroot->data(modelroot->index(i,modelroot->columnCount()-1)).toString()==node->getText()){
+            modelroot->removeRow(i);
+            del_sqltable(node->getText());
+            flagg=1;
+            break;
+        }
+    }
+    if(flagg){
+        for(int i=0;i<modelroot->rowCount();i++){
+            modelroot->setData(modelroot->index(i,0),i+1);
+        }
+        if (modelroot->submitAll()) {
+                modelroot->database().commit(); //
+                m_scene->clear();
+                m_nodeQueue.clear();
+                m_link.clear();
+                this->ruledsp();
+        }
+    }
+}  //  modelroot->removeRow(modelroot->fieldIndex(node->getText()));
 }
 void MainWindow::m_remove_clicked() //删除
 {
     int curRow = ui->tableView_2->currentIndex().row();
+    //if(ui->tableView_2->cursor())
     int ok = QMessageBox::warning(this,QString("提示!"),QString("确定删除第"+QString::number(curRow+1)+"行？"),
                          QMessageBox::Yes,QMessageBox::No);
-
     if(ok == QMessageBox::No)
     {
        modelin.at(0)->revertAll(); //回退
     }
     else{
         if(rootflag==1){
-            modelroot->removeRow(curRow-1);
-            del_sqltable(modelroot->index(curRow-1,modelroot->columnCount()-1).data().toString());
+            modelroot->removeRow(curRow);
+            del_sqltable(modelroot->index(curRow,modelroot->columnCount()-1).data().toString());
             for(int i=0;i<modelroot->rowCount();i++){
                 modelroot->setData(modelroot->index(i,0),i+1);
             }
-            modelroot->submitAll();
+            if (modelroot->submitAll()) {
+                modelroot->database().commit(); //
+                    m_scene->clear();
+                    m_nodeQueue.clear();
+                    m_link.clear();
+                    this->ruledsp();
+            }
+
         }
         else{
             myviewmodel->removeRow(curRow);
+            qDebug()<<QString("删除第%1行:").arg(curRow);
         }
     }
     myviewmodel->setview(myviewmodel->modellist0);
@@ -655,6 +664,7 @@ void MainWindow::m_remove_checked(){
                          QMessageBox::Yes,QMessageBox::No);
     if(ok){
         myviewmodel->removeRow_checked();
+        qDebug()<<QString("删除选中行");
         }
       myviewmodel->setview(myviewmodel->modellist0);
 
@@ -675,8 +685,13 @@ void MainWindow::m_remove_checked(){
 //}
 void MainWindow::addwindowshow(){
     if(rootflag==0){
-        addwindow->show();
-        addwindow->cleartext();
+        if(loadfile){
+            addwindow->show();
+            addwindow->cleartext();
+         }
+        else{
+            this->LoadClassifyFile();
+        }
     }
     else{
         int row=ui->tableView_2->currentIndex().row();
@@ -696,15 +711,26 @@ void MainWindow::m_addrule(){
     if(curRow<0){
         curRow=0;
     }
-    addrule.append(addwindow->getIf());
-    addrule.append(addwindow->getThen());
-    addrule.append(addwindow->getWeight());
-    bool flag=myviewmodel->addrecord(addrule,curRow);
-    if(flag){
-        QMessageBox::warning(this,QString("提示!"),QString("添加成功"));
+    QString if_value=addwindow->getIf();
+    QString then_value=addwindow->getThen();
+    QString  W_value=addwindow->getWeight();
+    if(if_value!=""&&then_value!="" && W_value!=""){
+        addrule.append(if_value);
+        addrule.append(then_value);
+        addrule.append(W_value);
+        bool flag=myviewmodel->addrecord(addrule,curRow);
+        if(flag){
+            QMessageBox::warning(this,QString("提示!"),QString("添加成功"));
+            qDebug()<<QString("添加规则成功")<<QString("条件：")<<if_value<<QString("结果：")<<then_value<<QString("权重：")<<W_value;
+        }
+        else{
+            QMessageBox::warning(this,QString("提示!"),QString("规则重复，添加失败"));
+            qDebug()<<QString("添加规则失败");
+        }
     }
     else{
-        QMessageBox::warning(this,QString("提示!"),QString("规则重复，添加失败"));
+        QMessageBox::warning(this,QString("提示!"),QString("规则缺少内容，添加失败"));
+        qDebug()<<QString("添加规则失败");
     }
    //myviewmodel->addrule();
 }
@@ -755,6 +781,9 @@ void MainWindow::onUpdateContextMenu(QPoint pos)
     m_actSubmit->setEnabled(menuflag);
     //m_actFind->setEnabled(menuflag&&!rootflag);
     m_actBack->setEnabled(menuflag&&!rootflag);
+//    ui->checkall->setEnabled(!rootflag);
+//    ui->re_chose->setEnabled(!rootflag);
+//    ui->checkBox->setEnabled(!rootflag);
     QModelIndex index = ui->tableView_2->indexAt(pos);
     if (index.isValid())
     {
@@ -767,44 +796,203 @@ void MainWindow::addwindowshow_node(QStringList list_0){
 
 }
 void MainWindow::m_findshow(){
+    ui->comboBox->blockSignals(true);
+    ui->comboBox_2->blockSignals(true);
+    ui->comboBox_3->blockSignals(true);
+    ui->comboBox_4->blockSignals(true);
+    //ui->comboBox_5->blockSignals(true);
+    //if(ui->comboBox->count()<=0){
     ui->comboBox->clear();
+    ui->comboBox_2->clear();
+    ui->comboBox_3->clear();
+    ui->comboBox_4->clear();
+    ui->comboBox->addItem(" ");
+    ui->comboBox_2->addItem(" ");
+    ui->comboBox_3->addItem(" ");
+    ui->comboBox_4->addItem(" ");
     findnode1=m_nodeQueue.first();
     for(int i=0;i<findnode1->getLinksTo().count();i++){
-
         ui->comboBox->addItem(findnode1->getLinksTo().at(i)->getToNode()->getText());
     }
+
+    ui->comboBox->setCurrentIndex(-1);
+    ui->comboBox_2->setCurrentIndex(-1);
+    ui->comboBox_3->setCurrentIndex(-1);
+    ui->comboBox_4->setCurrentIndex(-1);
+    ui->comboBox->blockSignals(false);
+    ui->comboBox_2->blockSignals(false);
+    ui->comboBox_3->blockSignals(false);
+    ui->comboBox_4->blockSignals(false);
+    ui->comboBox->blockSignals(false);
+    ui->comboBox->setCurrentIndex(0);
+    //findnode1=m_node_red.first();
+
+}
+void MainWindow::setItemList(QComboBox*a,QComboBox*prea,QList<Node*>&list0,QList<Node*>&listnext,int index){
+    if(list0.isEmpty()){
+        return;
+    }
+    else{
+        listnext.clear();
+        for(int i=1;i<a->count();i++){
+            a->removeItem(i);
+        }
+        if(index==0){
+            for(auto&findnode:list0){//list0上一级选择的节点集
+                for(int i=0;i<findnode->getLinksTo().count();i++){//遍历下一级节点
+
+                    listnext.append(findnode->getLinksTo().at(i)->getToNode());
+                    for(int j=0;j<listnext.back()->getLinksTo().count();j++){
+                        int row=a->findText(listnext.back()->getLinksTo().at(j)->getToNode()->getText());
+                        qDebug()<<listnext.back()->getText();
+                        if(row<0){
+                            a->addItem(listnext.back()->getLinksTo().at(j)->getToNode()->getText());
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            for(auto&findnode:list0){
+                for(int i=0;i<findnode->getLinksTo().count();i++){
+
+                    if(findnode->getLinksTo().at(i)->getToNode()->getText()==prea->currentText()){
+                        listnext.append(findnode->getLinksTo().at(i)->getToNode());
+                        for(int j=0;j<listnext.back()->getLinksTo().count();j++){
+                            int row=a->findText(listnext.back()->getLinksTo().at(j)->getToNode()->getText());
+
+                            if(row<0){
+                                a->addItem(listnext.back()->getLinksTo().at(j)->getToNode()->getText());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if(a->currentIndex()==0){
+        a->setCurrentIndex(-1);
+    }
+    a->setCurrentIndex(0);
 }
 void MainWindow::setcomboxitem(int index){
-        if (sender() == ui->comboBox&&index!=-1)
-        {
-        findnode2=findnode1->getLinksTo().at(index)->getToNode();
-        ui->comboBox_2->clear();
-        for(int i=0;i<findnode2->getLinksTo().count();i++){
-            ui->comboBox_2->addItem(findnode2->getLinksTo().at(i)->getToNode()->getText());
+       if(sender() == ui->comboBox&&index!=-1){
+           findlist1.clear();
+           if(index==0){
+               for(int i=0;i<findnode1->getLinksTo().count();i++){
+                  findlist1.append(findnode1->getLinksTo().at(i)->getToNode());
+               }
+           }
+           else{
+               findlist1.append(findnode1->getLinksTo().at(index-1)->getToNode());
+           }
+           for(int i=1;i<ui->comboBox_2->count();i++){
+               ui->comboBox_2->removeItem(i);
+           }
+           for(auto&findnode:findlist1){
+               for(int i=0;i<findnode->getLinksTo().count();i++){
+                   int row=ui->comboBox_2->findText(findnode->getLinksTo().at(i)->getToNode()->getText());
+                   if(row<0){
+                       ui->comboBox_2->addItem(findnode->getLinksTo().at(i)->getToNode()->getText());
+                   }
+               }
+           }
+           if(ui->comboBox_2->currentIndex()==0){
+               ui->comboBox_2->setCurrentIndex(-1);
+           }
+           ui->comboBox_2->setCurrentIndex(0);
         }
-        }
-        else if (sender() == ui->comboBox_2&&index!=-1)
-        {
-        findnode3=findnode2->getLinksTo().at(index)->getToNode();
-        ui->comboBox_3->clear();
-        for(int i=0;i<findnode3->getLinksTo().count();i++){
-            ui->comboBox_3->addItem(findnode3->getLinksTo().at(i)->getToNode()->getText());
-        }
-        }
+       else if (sender() == ui->comboBox_2&&index!=-1)
+       {
+        setItemList(ui->comboBox_3,ui->comboBox_2,findlist1,findlist2,index);
+       }
+//        else if (sender() == ui->comboBox_2&&index!=-1)
+//       {
+//        setItemList(ui->comboBox_3,ui->comboBox_2,findlist2,findlist3,index);
+//       }
         else if (sender() == ui->comboBox_3&&index!=-1)
        {
-        ui->comboBox_4->clear();
-        findnode4=findnode3->getLinksTo().at(index)->getToNode();
-        for(int i=0;i<findnode4->getLinksTo().count();i++){
-            ui->comboBox_4->addItem(findnode4->getLinksTo().at(i)->getToNode()->getText());
-        }
-
-    }
-        else if (sender() == ui->comboBox_4&&index!=-1){
-            findnode5=findnode4->getLinksTo().at(index)->getToNode();
-        }
-
+       setItemList(ui->comboBox_4,ui->comboBox_3,findlist2,findlist3,index);
+       }
+       else if (sender() == ui->comboBox_4&&index!=-1){
+           findlist4.clear();
+            if(index==0){
+                   for(auto&findnode:findlist3){
+                       for(int i=0;i<findnode->getLinksTo().count();i++){
+                          findlist4.append(findnode->getLinksTo().at(i)->getToNode());
+                       }
+                  }
+            }
+            else{
+                for(auto&findnode:findlist3){
+                    for(int i=0;i<findnode->getLinksTo().count();i++){
+                        if(findnode->getLinksTo().at(i)->getToNode()->getText()==ui->comboBox_4->currentText()){
+                            findlist4.append(findnode->getLinksTo().at(i)->getToNode());
+                        }
+                    }
+                }
+            }
+       }
 }
+void MainWindow::m_find_clicked() //查询
+{
+    if(!findlist4.isEmpty()){
+        model_display.clear();
+        myviewmodel->Tablehead.clear();
+        for(auto&&node0:findlist4){
+            for(int i=0;i<node0->getLinksTo().count();i++){
+                Node* node1=node0->getLinksTo().at(i)->getToNode();
+                for(int j=0;j<modelin.count();j++){
+                    if(modelin.at(j)->tableName()==node1->getText()){
+                        if(!model_display.contains(modelin.at(j))){
+                            model_display.append(modelin.at(j));
+                            myviewmodel->Tablehead.append(node1->getheadname());
+                        }
+                        break;
+                    }
+                }
+            }
+
+        }
+        myviewmodel->setview(model_display);
+    }
+    else{
+        QMessageBox::warning(this, tr("结果:"),
+                                    tr("找不到对应的结果!"));
+        qWarning()<<QString("查找失败");
+    }
+}
+//void MainWindow::setcomboxitem(int index){
+//        if (sender() == ui->comboBox&&index!=-1)
+//        {
+//        findnode2=findnode1->getLinksTo().at(index)->getToNode();
+//        ui->comboBox_2->clear();
+//        for(int i=0;i<findnode2->getLinksTo().count();i++){
+//            ui->comboBox_2->addItem(findnode2->getLinksTo().at(i)->getToNode()->getText());
+//        }
+//        }
+//        else if (sender() == ui->comboBox_2&&index!=-1)
+//        {
+//        findnode3=findnode2->getLinksTo().at(index)->getToNode();
+//        ui->comboBox_3->clear();
+//        for(int i=0;i<findnode3->getLinksTo().count();i++){
+//            ui->comboBox_3->addItem(findnode3->getLinksTo().at(i)->getToNode()->getText());
+//        }
+//        }
+//        else if (sender() == ui->comboBox_3&&index!=-1)
+//       {
+//        ui->comboBox_4->clear();
+//        findnode4=findnode3->getLinksTo().at(index)->getToNode();
+//        for(int i=0;i<findnode4->getLinksTo().count();i++){
+//            ui->comboBox_4->addItem(findnode4->getLinksTo().at(i)->getToNode()->getText());
+//        }
+
+//    }
+//        else if (sender() == ui->comboBox_4&&index!=-1){
+//            findnode5=findnode4->getLinksTo().at(index)->getToNode();
+//        }
+
+//}
 void MainWindow::m_logshow(){
     this->m_logwindow->show();
 }
@@ -950,9 +1138,11 @@ bool MainWindow::add_sqltable(QString name){
     bool flag=datamanage::addtable(db,name);
     if(flag){
             QMessageBox::about(this, "创建", "create new table success");
+            qDebug()<<QString("创建表成功");
                   }
              else{
              QMessageBox::about(this, "创建", "error create new database");
+             qWarning()<<QString("创建表失败");
     }
     return flag;
 }
@@ -960,15 +1150,16 @@ void MainWindow::del_sqltable(QString name){
     bool flag=datamanage::deltable(db,name);
     if(flag){
             QMessageBox::about(this, "删除", " delete table success");
+            qDebug()<<tr("删除表成功：%1").arg(name);
                   }
              else{
-
              QMessageBox::about(this, "删除", "error delete table");
     }
 }
 void MainWindow::updateID(){
     int row=modelroot->rowCount();
     QList<QString>list_out=add_table0->dataout();
+
     add_table0->close();
 
     int id=modelroot->rowCount();
@@ -984,20 +1175,24 @@ void MainWindow::updateID(){
 //    }
     bool flag=add_sqltable(list_out.back());
     if(flag){
-        this->m_submit_clicked();
+        if (modelroot->submitAll()) {
+            modelroot->database().commit(); //
+                m_scene->clear();
+                m_nodeQueue.clear();
+              m_link.clear();
+              this->ruledsp();
+        }
     }
     else{
         modelroot->revertAll();
     }
     myviewmodel->setview(myviewmodel->modellist0);
 
-    //modelroot->select();
-   // modelroot->submitAll();
 }
 
 
 
-bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+/*bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
     MSG* msg = (MSG*)message;
     if(!this->pTitlebar->window()->isMaximized()){
@@ -1035,7 +1230,7 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 {
     if(e->button()==Qt::LeftButton)
         clickPos=e->pos();
-}
+}*/
 //void MainWindow::mouseMoveEvent(QMouseEvent *e)
 //{
 //    if(e->buttons()&Qt::LeftButton)

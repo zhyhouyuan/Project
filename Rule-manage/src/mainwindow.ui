@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1369</width>
+    <width>1399</width>
     <height>823</height>
    </rect>
   </property>
@@ -26,11 +26,17 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="source.qrc">
+   <iconset resource="../source.qrc">
     <normaloff>:/image/main.png</normaloff>:/image/main.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
@@ -41,8 +47,17 @@
       </property>
       <widget class="QWidget" name="disppage">
        <layout class="QGridLayout" name="gridLayout">
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="bottomMargin">
+         <number>5</number>
+        </property>
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,1">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0">
             <item>
@@ -74,14 +89,13 @@
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/image/add.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">
-</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string>加载规则库</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="source.qrc">
+                    <iconset resource="../source.qrc">
                      <normaloff>:/image/reload.png</normaloff>:/image/reload.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -107,7 +121,7 @@
                     <string>返回结构表</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="source.qrc">
+                    <iconset resource="../source.qrc">
                      <normaloff>:/image/undo.png</normaloff>:/image/undo.png</iconset>
                    </property>
                   </widget>
@@ -126,13 +140,7 @@
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">QCheckBox::indicator:unchecked{
-	image: url(:/image/btncheckoff.png);
-}
-
-QCheckBox::indicator:checked{
-image: url(:/image/btncheckon.png);
-}
+               <string notr="true">
 </string>
               </property>
               <property name="text">
@@ -166,6 +174,22 @@ image: url(:/image/btncheckon.png);
                 <number>0</number>
                </property>
                <item>
+                <widget class="QPushButton" name="loadfile">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>态势加载</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../source.qrc">
+                   <normaloff>:/image/document-open.png</normaloff>:/image/document-open.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="outputfile">
                  <property name="font">
                   <font>
@@ -186,7 +210,7 @@ image: url(:/image/btncheckon.png);
                   <string>导出文件</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="source.qrc">
+                  <iconset resource="../source.qrc">
                    <normaloff>:/image/print.png</normaloff>:/image/print.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -218,7 +242,7 @@ image: url(:/image/btncheckon.png);
                   <string>添加</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="source.qrc">
+                  <iconset resource="../source.qrc">
                    <normaloff>:/image/add.png</normaloff>:/image/add.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -244,7 +268,7 @@ image: url(:/image/btncheckon.png);
                   <string>删除</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="source.qrc">
+                  <iconset resource="../source.qrc">
                    <normaloff>:/image/delete.png</normaloff>:/image/delete.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -270,7 +294,7 @@ image: url(:/image/btncheckon.png);
                   <string>修改</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="source.qrc">
+                  <iconset resource="../source.qrc">
                    <normaloff>:/image/first.png</normaloff>:/image/first.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -296,7 +320,7 @@ image: url(:/image/btncheckon.png);
                   <string>查找</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="source.qrc">
+                  <iconset resource="../source.qrc">
                    <normaloff>:/image/select.png</normaloff>:/image/select.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -322,7 +346,7 @@ image: url(:/image/btncheckon.png);
                   <string>撤销</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="source.qrc">
+                  <iconset resource="../source.qrc">
                    <normaloff>:/image/pre.png</normaloff>:/image/pre.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -348,7 +372,7 @@ image: url(:/image/btncheckon.png);
                   <string>提交修改</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="source.qrc">
+                  <iconset resource="../source.qrc">
                    <normaloff>:/image/update.png</normaloff>:/image/update.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -389,8 +413,7 @@ image: url(:/image/btncheckon.png);
               <item>
                <widget class="QGraphicsView" name="graphicsView">
                 <property name="styleSheet">
-                 <string notr="true">background: rgb(232, 241, 252);
-border-color: rgb(0, 0, 0);</string>
+                 <string notr="true"/>
                 </property>
                </widget>
               </item>
@@ -408,26 +431,6 @@ border-color: rgb(0, 0, 0);</string>
                    </size>
                   </property>
                  </spacer>
-                </item>
-                <item>
-                 <widget class="QSlider" name="m_slider">
-                  <property name="styleSheet">
-                   <string notr="true">
-QSlider::groove:horizontal {
-        height: 6px;
-        background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(124, 124, 124), stop: 1.0 rgb(72, 71, 71));
-}
-QSlider::handle:horizontal {
-        width: 16px;
-        background: rgb(0, 160, 230);
-        margin: -6px 0px -6px 0px;
-        border-radius: 8px;
-}</string>
-                  </property>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
                 </item>
                </layout>
               </item>
@@ -527,7 +530,7 @@ QSlider::handle:horizontal {
               <item>
                <widget class="QTableView" name="tableView_2">
                 <property name="styleSheet">
-                 <string notr="true">background: rgb(232, 241, 252);</string>
+                 <string notr="true"/>
                 </property>
                 <attribute name="verticalHeaderVisible">
                  <bool>false</bool>
@@ -630,7 +633,7 @@ QSlider::handle:horizontal {
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="source.qrc"/>
+  <include location="../source.qrc"/>
  </resources>
  <connections>
   <connection>

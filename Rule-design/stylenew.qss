@@ -1,0 +1,107 @@
+QWidget#MainWindow {
+/*background: rgb(173, 202, 232);*/
+}
+QWidget#centralWidget {
+/*background: rgb(232, 241, 252);*/
+background: rgb(240, 240, 240);
+
+}
+QWidget.addruleDialog{
+border: 1px solid rgb(50, 50, 50);
+background: rgb(240, 240, 240);
+}
+QWidget.changeDialog{
+border: 1px solid rgb(50, 50, 50);
+background: rgb(240, 240, 240);
+}
+QWidget.logdialog{
+border: 1px solid rgb(50, 50, 50);
+background: rgb(240, 240, 240);
+}
+QWidget.findDialog{
+border: 1px solid rgb(50, 50, 50);
+background: rgb(240, 240, 240);
+}
+QWidget.addsqltable{
+border: 1px solid rgb(50, 50, 50);
+background: rgb(240, 240, 240);
+}
+QMessageBox{
+border: 1px solid rgb(50, 50, 50);
+background: rgb(240, 240, 240);
+}
+QPushButton{
+background-color: qconicalgradient(cx:0.5, cy:0.522909, angle:179.9, stop:0.494318 rgba(214, 214, 214, 255), stop:0.5 rgba(236, 236, 236, 255));
+border-style:outset;
+border:2px;
+border-radius: 10px;
+padding:3px;
+font: 9pt "Microsoft YaHei";
+}
+QPushButton:pressed{
+background-color:rgba(100,255,100,200);
+border-color:rgba(255,255,255,30);
+border-style:inset;
+color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+background-color: #f26522;
+color:#fff;
+}
+QMessageBox QPushButton{
+background-color:rgb(255, 255, 255);
+border-color:black;
+}
+QMenuBar {
+background: rgb(187, 212, 238);
+border: 1px solid rgb(111, 156, 207);
+border-left: none;
+border-right: none;
+}
+QMenuBar::item {
+border: 1px solid transparent;
+padding: 5px 10px 5px 10px;
+background: transparent;
+}
+QMenuBar::item:enabled {
+color: rgb(2, 65, 132);
+}
+QMenuBar::item:!enabled {
+color: rgb(155, 155, 155);
+}
+QMenuBar::item:enabled:selected {
+border-top-color: rgb(111, 156, 207);
+border-bottom-color: rgb(111, 156, 207);
+background: rgb(198, 224, 252);
+}
+QMenu {
+border: 1px solid rgb(111, 156, 207);
+background: rgb(232, 241, 250);
+}
+QMenu::item {
+height: 22px;
+padding: 0px 25px 0px 20px;
+}
+QMenu::item:enabled {
+color: rgb(84, 84, 84);
+}
+QMenu::item:!enabled {
+color: rgb(155, 155, 155);
+}
+QMenu::item:enabled:selected {
+color: rgb(2, 65, 132);
+background: rgba(255, 255, 255, 200);
+}
+QMenu::separator {
+height: 1px;
+background: rgb(111, 156, 207);
+}
+QMenu::indicator {
+width: 13px;
+height: 13px;
+}
+QMenu::icon {
+padding-left: 2px;
+padding-right: 2px;
+}

@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rete", "Rete.vcxproj", "{5AFB40E3-173A-4B84-A810-559BFF44A691}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rule_detect", "..\Rule_detect\Rule_detect.vcxproj", "{C44127EE-FE0D-4882-AD12-7EB8E16F0722}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{5AFB40E3-173A-4B84-A810-559BFF44A691}.Release|x64.Build.0 = Release|x64
 		{5AFB40E3-173A-4B84-A810-559BFF44A691}.Release|x86.ActiveCfg = Release|Win32
 		{5AFB40E3-173A-4B84-A810-559BFF44A691}.Release|x86.Build.0 = Release|Win32
+		{C44127EE-FE0D-4882-AD12-7EB8E16F0722}.Debug|x64.ActiveCfg = Debug|x64
+		{C44127EE-FE0D-4882-AD12-7EB8E16F0722}.Debug|x64.Build.0 = Debug|x64
+		{C44127EE-FE0D-4882-AD12-7EB8E16F0722}.Debug|x86.ActiveCfg = Debug|Win32
+		{C44127EE-FE0D-4882-AD12-7EB8E16F0722}.Debug|x86.Build.0 = Debug|Win32
+		{C44127EE-FE0D-4882-AD12-7EB8E16F0722}.Release|x64.ActiveCfg = Release|x64
+		{C44127EE-FE0D-4882-AD12-7EB8E16F0722}.Release|x64.Build.0 = Release|x64
+		{C44127EE-FE0D-4882-AD12-7EB8E16F0722}.Release|x86.ActiveCfg = Release|Win32
+		{C44127EE-FE0D-4882-AD12-7EB8E16F0722}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

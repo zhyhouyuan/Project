@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>175</height>
+    <width>439</width>
+    <height>310</height>
    </rect>
   </property>
   <property name="font">
@@ -20,29 +20,56 @@
    <string>加载规则库</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="source.qrc">
+   <iconset resource="../source.qrc">
     <normaloff>:/image/print.png</normaloff>:/image/print.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">border:1px solid rgb(240, 240, 240);
+border-radius: 5px;</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>5</number>
+   </property>
+   <property name="topMargin">
+    <number>5</number>
+   </property>
+   <property name="rightMargin">
+    <number>5</number>
+   </property>
+   <property name="bottomMargin">
+    <number>5</number>
+   </property>
    <item>
     <widget class="QGroupBox" name="groupBox">
+     <property name="styleSheet">
+      <string notr="true">border:1px solid rgb(180, 180, 180);
+border-radius: 8px;</string>
+     </property>
      <property name="title">
       <string/>
      </property>
      <widget class="QLabel" name="labUserName">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>20</y>
+        <x>30</x>
+        <y>90</y>
         <width>91</width>
         <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Agency FB</family>
+        <family>Microsoft YaHei</family>
         <pointsize>12</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Microsoft YaHei&quot;;
+border:none;</string>
       </property>
       <property name="text">
        <string>用户名：</string>
@@ -51,17 +78,24 @@
      <widget class="QLabel" name="labUserPwd">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>60</y>
+        <x>30</x>
+        <y>170</y>
         <width>91</width>
         <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Agency FB</family>
+        <family>Microsoft YaHei</family>
         <pointsize>12</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Microsoft YaHei&quot;;
+border:none;</string>
       </property>
       <property name="text">
        <string>密码:</string>
@@ -70,10 +104,10 @@
      <widget class="QLineEdit" name="rulebasepwd">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>60</y>
-        <width>161</width>
-        <height>28</height>
+        <x>140</x>
+        <y>170</y>
+        <width>251</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="echoMode">
@@ -83,10 +117,10 @@
      <widget class="QLineEdit" name="username">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>20</y>
-        <width>161</width>
-        <height>28</height>
+        <x>140</x>
+        <y>90</y>
+        <width>251</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="echoMode">
@@ -96,20 +130,39 @@
      <widget class="QPushButton" name="btnLogin">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>110</y>
+        <x>130</x>
+        <y>240</y>
         <width>101</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="cursor">
        <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:pressed{
+background-color:rgba(100,255,100,200);
+border-color:rgba(255,255,255,30);
+border-style:inset;
+color:rgba(0,0,0,100);
+}
+QPushButton:hover{
+/*background-color: #f26522;*/
+background-color: #4169E1;
+color:#fff;
+}</string>
       </property>
       <property name="text">
        <string>登录</string>
       </property>
       <property name="icon">
-       <iconset resource="source.qrc">
+       <iconset resource="../source.qrc">
         <normaloff>:/image/update.png</normaloff>:/image/update.png</iconset>
       </property>
       <property name="iconSize">
@@ -122,20 +175,40 @@
      <widget class="QPushButton" name="btnClose">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>110</y>
+        <x>280</x>
+        <y>240</y>
         <width>101</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="cursor">
        <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton:pressed{
+background-color:rgba(100,255,100,200);
+border-color:rgba(255,255,255,30);
+border-style:inset;
+color:rgba(0,0,0,100);
+
+}
+QPushButton:hover{
+/*background-color: #f26522;*/
+background-color: #4169E1;
+color:#fff;
+}</string>
       </property>
       <property name="text">
        <string>取消</string>
       </property>
       <property name="icon">
-       <iconset resource="source.qrc">
+       <iconset resource="../source.qrc">
         <normaloff>:/image/delete.png</normaloff>:/image/delete.png</iconset>
       </property>
       <property name="iconSize">
@@ -145,12 +218,38 @@
        </size>
       </property>
      </widget>
+     <widget class="QLabel" name="labUserName_2">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>30</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <pointsize>14</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;Microsoft YaHei&quot;;
+border:none;</string>
+      </property>
+      <property name="text">
+       <string>用户登录</string>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="source.qrc"/>
+  <include location="../source.qrc"/>
  </resources>
  <connections/>
 </ui>

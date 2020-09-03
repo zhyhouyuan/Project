@@ -5,8 +5,8 @@
 #include<QFileDialog>
 #include <QtXml>
 #include<QSqlRecord>
-#include"changedialog.h"
-#include"checkdialog.h"
+#include"src/changedialog.h"
+#include"src/checkdialog.h"
 #include<QtConcurrent>
 viewmodel::viewmodel(QObject * parent):QAbstractTableModel(parent)
 {
@@ -20,7 +20,7 @@ viewmodel::viewmodel(QObject * parent):QAbstractTableModel(parent)
 }
 void viewmodel::setview(QList<QSqlTableModel*>modellist){
     QFuture<QVariant> future =QtConcurrent::run(this,&viewmodel::setview_0,modellist);
-    //qDebug()<<this->rowcount;
+
     future.waitForFinished();
     if(future.isFinished()){
        emit sendRowchanged(true);
@@ -582,7 +582,6 @@ QString viewmodel::transRule(QString ch,int flag)const{
     case 2:{
         for(int i=0;i<list.count();i++){
             rulefact->addfact(list.at(i));
-
             Rule_out=Rule_out+QString::number(rulefact->findfact(list.at(i)));
             if(i<list_andor.count()){
                 Rule_out=Rule_out+list_andor.at(i);
@@ -650,7 +649,6 @@ bool viewmodel::removeRow(int arow){
     if(arow<=listnum.at(0)&&arow>0){
        if_text=modellist0.at(0)->record(arow-1).value(1).toString();
        then_text=modellist0.at(0)->record(arow-1).value(2).toString();
-
        modellist0.at(0)->removeRow(arow-1);
        //modellist0.at(0)->revertAll();
        QSqlTableModel* modelout=new QSqlTableModel(this,modellist0.at(0)->database());
@@ -876,7 +874,7 @@ bool viewmodel::removeRow_checked(){
 }
 bool viewmodel::submit_checked(){
     QMap<int, Qt::CheckState>::iterator it; //遍历map
-    //qDebug()<<this->check_state_map;
+
     for ( it = this->check_state_map.begin(); it != this->check_state_map.end(); ++it )
     {
         if(it.value()==Qt::Checked){
@@ -917,7 +915,7 @@ bool viewmodel::submit_checked(){
                     this->sub_fact(modellist0.at(ik)->record(num).value(2).toString(),1);
 
                     QSqlRecord recored0=modellist0.at(ik)->record(num);
-                    //qDebug()<<recored0.value(1);
+
                     for(int j=num;j>modelout->rowCount();j--){
                         modellist0.at(ik)->setRecord(j, modellist0.at(ik)->record(j-1));
                         modellist0.at(ik)->setData(modellist0.at(ik)->index(j,0),j+1);
@@ -927,16 +925,17 @@ bool viewmodel::submit_checked(){
                     //modellist0.at(ik)->setData(modelout->index(j,0),j+1);
                     //check_state_map.
                     check_state_map[k] = Qt::Unchecked;
-                    //qDebug()<<recored0.value(1);
+
                     //bool flag0=modellist0.at(ik)->moveRow(modelout->rowCount(),num);
                     modelout->insertRecord(modelout->rowCount(),recored0);
                     modelout->setData(modelout->index(modelout->rowCount()-1,0),modelout->rowCount());
 
                 }
-                modelout->submitAll();
+                if(modelout->submitAll()){
+                    qDebug()<<tr("第%1条规则提交成功").arg(k);
+                }
                 delete modelout;
             }
-
 
         }
     }
@@ -987,7 +986,7 @@ void viewmodel::sub_fact(QString ch,bool ad_de){
     }
     else{
         for(int i=0;i<list1.count();i++){
-           // qDebug()<<list1.at(i).toInt()<<"ID";
+
             subfact->removefact(list1.at(i).toInt());
             subfact->model_fact->submitAll();
 
@@ -1015,7 +1014,7 @@ void viewmodel::WriteXml(QString dirPath){
     {
         if(it.value()==Qt::Checked){
             int k=it.key();
-            if(k<=listnum.at(0)&&k>0){
+            if(k<listnum.at(0)&&k>0){
                 QDomElement rulesubbase;
                   if(!list_num.contains(0)){
                       list_num.append(0);
@@ -1034,12 +1033,13 @@ void viewmodel::WriteXml(QString dirPath){
                   }
                   //QDomElement rule=doc.createElement("rule");
                   QSqlRecord  record_out=modellist0.at(0)->record(k-1);
+
                   this->add_div_rule(doc,record_out,rulesubbase);
         }
           else{
                 int hn=0;
                 for(int i=1;i<listnum.count();i++){
-                  if(k<=listnum.at(i)&&k>listnum.at(i-1)){
+                  if(k<listnum.at(i)&&k>listnum.at(i-1)){
                       hn=i;
                   }
                 }
@@ -1107,8 +1107,8 @@ void viewmodel::addxmlnode(QDomDocument doc,QDomElement node,QString data_0,QStr
         condition.setAttribute("relation",list0.at(3));
         condition.setAttribute("id",iii);
         int index=list0.at(1).indexOf(".");
-        condition.setAttribute("val",list0.at(1).left(index));
-        condition.setAttribute("res",list0.at(1).right(list0.at(1).length()-index)+list0.at(2));
+        condition.setAttribute("var",list0.at(1).left(index));
+        condition.setAttribute("prop",list0.at(1).right(list0.at(1).length()-index)+list0.at(2));
     }
 }
 void viewmodel::add_div_rule(QDomDocument doc, QSqlRecord record_out,QDomElement node){
@@ -1117,21 +1117,24 @@ void viewmodel::add_div_rule(QDomDocument doc, QSqlRecord record_out,QDomElement
     int nn=0;
     for(int i=0;i<list_or.count();i++){
         for(int j=0;j<list_or2.count();j++){
+          //  if(list_or.at(i)!=""&&list_or2.at(i)!=""){
             QDomElement rule=doc.createElement("rule");
             nn++;
             rule.setAttribute("id",record_out.value(0).toString()+"_"+QString::number(nn));
             QDomElement Rule_if=doc.createElement("lhs"); //创建子元素
             this->addxmlnode(doc,Rule_if,this->transRule(list_or.at(i),1),"condition");
             rule.appendChild(Rule_if);
+
             QDomElement Rule_then=doc.createElement("rhs"); //创建子元素
             this->addxmlnode(doc,Rule_then,this->transRule(list_or2.at(j),1),"action");
             rule.appendChild(Rule_then);
-            QDomElement Rule_W=doc.createElement("wight"); //创建子元素
+            QDomElement Rule_W=doc.createElement("weight"); //创建子元素
             QDomText text2;
             text2=doc.createTextNode(record_out.value(3).toString());
             Rule_W.appendChild(text2);
             rule.appendChild(Rule_W);
             node.appendChild(rule);
+         //   }
         }
     }
 }

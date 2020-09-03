@@ -1,6 +1,7 @@
 #include "rule_fact.h"
 #include <QtDebug>
-#include"changedialog.h"
+#include"src/changedialog.h"
+#include<QtDebug>
 Rule_fact::Rule_fact()
 {
 
@@ -68,7 +69,7 @@ void Rule_fact::addfact(QString name){
         model_fact->setData(model_fact->index(num1,0),lastID);
 
         QStringList list1=changeDialog::StringSplit(name);
-
+       // qDebug()<<list1<<name;
         model_fact->setData(model_fact->index(num1,1),list1.at(0)+list1.at(1)+list1.at(2));
         model_fact->setData(model_fact->index(num1,2),list1.at(3));
         model_fact->setData(model_fact->index(num1,3),list1.at(4));

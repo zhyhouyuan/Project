@@ -28,7 +28,7 @@ void ConnectionPool::getini(QString iniFilePath)
     this->hostName=settings.value("hostName").toString();
     this->databaseName=settings.value("databaseName").toString();
      this->databaseType=settings.value("databaseType").toString();
-    qDebug()<<settings.value("hostName").toString();
+   // qDebug()<<settings.value("hostName").toString();
 
 }
 //写入配置文件
@@ -211,7 +211,6 @@ QSqlDatabase ConnectionPool::createConnection(const QString &connectionName){
     db.setDatabaseName(databaseName);
     db.setUserName(username);
     db.setPassword(password);
-
     if(!db.open()){
         qDebug()<<"Open database error:"<<db.lastError().text();
         return QSqlDatabase();

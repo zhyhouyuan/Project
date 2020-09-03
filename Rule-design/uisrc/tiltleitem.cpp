@@ -40,8 +40,8 @@ void tiltleItem::paint(QPainter *painter, const QStyleOptionGraphicsItem */*opti
     from1.setY(m_fromPoint.ry());
     topoint.setY(ypos_end+20);
     for(int i=0;i<4;i++){
-        from1.setX(m_fromPoint.rx()+150+i*100);
-        topoint.setX(m_fromPoint.rx()+150+i*100);
+        from1.setX(m_fromPoint.rx()+225+i*150);
+        topoint.setX(m_fromPoint.rx()+225+i*150);
         //from1.setY(m_fromPoint.ry());
         painter->drawLine(from1,topoint); //画线，参数为起点和终点坐标
     }
@@ -49,7 +49,7 @@ void tiltleItem::paint(QPainter *painter, const QStyleOptionGraphicsItem */*opti
     QFont mFont; //定义一个字体变量
     mFont.setFamily("宋体"); //设置字体格式
     mFont.setPointSize(12);//设置字体大小
-    mFont.setItalic(true);  //斜体
+    //mFont.setItalic(true);  //斜体
     //painter->drawText()
     painter->setFont(mFont); //加入字体格式
     painter->setPen(QColor(0, 0, 0)); //设置画笔颜色
@@ -58,12 +58,12 @@ void tiltleItem::paint(QPainter *painter, const QStyleOptionGraphicsItem */*opti
     list0<<"类型"<<"型号"<<"模式"<<"任务"<<"规则";
     point0.setY(m_fromPoint.ry());
     for(int i=0;i<5;i++){
-        point0.setX(m_fromPoint.rx()+75+i*100);
+        point0.setX(m_fromPoint.rx()+100+i*150);
         //topoint.setX(m_fromPoint.rx()+50+i*100);
         //from1.setY(m_fromPoint.ry());
         painter->drawText(point0, list0.at(i));
         QRectF rect;
-        rect.setRect(point0.x()-25,point0.y()-30,100,50);
+        rect.setRect(point0.x()-25,point0.y()-30,150,50);
         //rect.adjust(-10, -10, +20, +10);
         //rect.translate(-rect.center());
         //rect.set

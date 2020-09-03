@@ -15,7 +15,6 @@
         <file>image/last.png</file>
         <file>image/login.png</file>
         <file>image/main.png</file>
-        <file>image/main2.png</file>
         <file>image/move.png</file>
         <file>image/next.png</file>
         <file>image/pre.png</file>
@@ -44,5 +43,6 @@
         <file>image/edit-redo.png</file>
         <file>image/edit-undo.png</file>
         <file>1.ini</file>
+        <file>stylenew.qss</file>
     </qresource>
 </RCC>

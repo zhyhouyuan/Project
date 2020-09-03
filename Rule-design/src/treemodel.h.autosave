@@ -1,0 +1,24 @@
+#ifndef TREEMODEL_H
+#define TREEMODEL_H
+#include <QList>
+#include <QPersistentModelIndex>
+#include<QStandardItemModel>
+
+class Treemodel:public QStandardItemModel
+{
+public:
+    Treemodel();
+    bool setData( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
+    QList<QPersistentModelIndex> m_checkedList;
+    QVariant data(const QModelIndex &index, int role) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    void treeItem_checkAllChild(QStandardItem * item, bool check);
+    void treeItem_checkAllChild_recursion(QStandardItem * item,bool check);
+    void treeItem_CheckChildChanged(QStandardItem * item);
+    Qt::CheckState checkSibling(QStandardItem * item);
+public slots:
+    void treeItemChanged(QStandardItem*item);
+};
+
+
+#endif // TREEMODEL_H

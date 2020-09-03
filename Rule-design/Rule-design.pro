@@ -18,7 +18,7 @@ RC_ICONS = main.ico
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
-
+DEFINES += QT_MESSAGELOGCONTEXT
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
@@ -38,7 +38,6 @@ SOURCES += \
     uisrc/change_wdialog.cpp \
     uisrc/changedialog.cpp \
     uisrc/checkdialog.cpp \
-    uisrc/datain0.cpp \
     uisrc/finddialog.cpp \
     uisrc/gcombox.cpp \
     uisrc/logdialog.cpp \
@@ -46,7 +45,9 @@ SOURCES += \
     uisrc/tiltleitem.cpp \
     uisrc/titlebar.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    src/m_treeview.cpp \
+    uisrc/newcombobox.cpp
 
 
 HEADERS += \
@@ -61,14 +62,15 @@ HEADERS += \
     uisrc/change_wdialog.h \
     uisrc/changedialog.h \
     uisrc/checkdialog.h \
-    uisrc/datain0.h \
     uisrc/finddialog.h \
     uisrc/gcombox.h \
     uisrc/logdialog.h \
     uisrc/scene.h \
     uisrc/tiltleitem.h \
     uisrc/titlebar.h \
-    mainwindow.h
+    mainwindow.h \
+    src/m_treeview.h \
+    uisrc/newcombobox.h
 
 
 
@@ -77,7 +79,6 @@ FORMS += \
     uisrc/addsqltable.ui \
     uisrc/change_wdialog.ui \
     uisrc/changedialog.ui \
-    uisrc/datain0.ui \
     uisrc/finddialog.ui \
     uisrc/logdialog.ui \
     mainwindow.ui

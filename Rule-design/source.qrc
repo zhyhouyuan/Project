@@ -49,5 +49,11 @@
         <file>image/stylesheet-vline.png</file>
         <file>image/main2.png</file>
         <file>1.ini</file>
+        <file>image/checkyes.png</file>
+        <file>image/planitem.png</file>
+        <file>image/itemicon.jpg</file>
+        <file>image/redIcon.jpg</file>
+        <file>image/blueIcon.jpg</file>
+        <file>stylenew.qss</file>
     </qresource>
 </RCC>

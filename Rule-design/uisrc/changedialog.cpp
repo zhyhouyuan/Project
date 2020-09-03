@@ -15,23 +15,21 @@ changeDialog::changeDialog(QWidget *parent) :
    first_fg=0;
    ui->table_if->setColumnCount(6);
    ui->table_then->setColumnCount(6);
-   //if_boxlist=new QList<Gcombox*> ;
    //ui->table_if->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+   QStringList strs = {"取反符号", "参数目录","变量名","符号关系","值","逻辑关系"};
+   ui->table_if->setHorizontalHeaderLabels(strs);
+   ui->table_then->setHorizontalHeaderLabels(strs);
    ui->table_if->setContextMenuPolicy(Qt::CustomContextMenu);
    ui->table_then->setContextMenuPolicy(Qt::CustomContextMenu);
    ui->table_if->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
    ui->table_then->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
    connect(ui->push_ok,SIGNAL(clicked()),this,SLOT(send_ch()));
-   //connect(ui->table_if,SIGNAL(itemClicked(QTableWidgetItem *)),this,SLOT(setvale_if(QTableWidgetItem *)));
-   //connect(ui->table_then,SIGNAL(cellPressed(int,int)),this,SLOT(setvale_then(int,int)));
    connect(ui->table_if, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onUpdateContextMenu(QPoint)));
    connect(ui->table_then, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onUpdateContextMenu2(QPoint)));
    connect(ui->add,SIGNAL(clicked()),this,SLOT(add_if()));
    connect(ui->del,SIGNAL(clicked()),this,SLOT(del_if()));
    connect(ui->add_2,SIGNAL(clicked()),this,SLOT(add_then()));
    connect(ui->del_2,SIGNAL(clicked()),this,SLOT(del_then()));
-
-   //QObject::connect(datain_0,SIGNAL(send_flag(bool)),this,SLOT(setfhdata()));
    createActions();
 
    QRegExp regx("[0-9]+$");
@@ -51,17 +49,13 @@ changeDialog::~changeDialog()
     delete model_then;
 }
 void changeDialog::send_ch(){
-   //if(ui->buttonBox->button(QDialogButtonBox::Ok)
    emit send_chflag(true);
 }
 void changeDialog::setRuleData(QSqlRecord* record0){
    if(!first_fg){
-       //model->clear();
        first_fg=this->LoadClassifyFile();
-
    }
    if(first_fg){
-  // model->clear();
    init_fg=0;
    this->ui->table_if->setRowCount(0);
    ui->table_if->clearContents();
@@ -90,7 +84,6 @@ void changeDialog::setRuleData(QSqlRecord* record0){
       // ui->table_if->setColumnCount(5);
        for(int i=0;i<list_if.count();i++){
            QStringList list0=this->StringSplit(list_if.at(i));
-           qDebug()<<list0;
            QComboBox *comBox_not = new QComboBox(this);
            ui->table_if->setCellWidget(i,0,comBox_not);
            QStringList notlist;
@@ -201,8 +194,6 @@ void changeDialog::setRuleData(QSqlRecord* record0){
    }
 }
 bool changeDialog::getRuleData(QSqlRecord* record1){
-   //QSqlField fildname;
-  // bool chflag;
    int m=ui->table_if->rowCount();
    int n =ui->table_then->rowCount();
    for(int i=0;i<record1->count();i++){
@@ -390,7 +381,7 @@ bool changeDialog::getRuleData(QSqlRecord* record1){
 QStringList changeDialog::StringSplit(QString datain0){
    QStringList listfuh;
    QString datain=datain0.simplified();
-   listfuh<<"="<<">"<<"<"<<">="<<"<=";
+   listfuh<<">="<<"<="<<"="<<">"<<"<";
    QVector<int>pos;
    int pos_0=datain.indexOf(listfuh.at(0));
    int pos_1=datain.indexOf(listfuh.at(1));
@@ -398,6 +389,10 @@ QStringList changeDialog::StringSplit(QString datain0){
    pos.append(pos_0);
    pos.append(pos_1);
    pos.append(pos_2);
+   int pos_3=datain.indexOf(listfuh.at(3));
+   int pos_4=datain.indexOf(listfuh.at(4));
+   pos.append(pos_3);
+   pos.append(pos_4);
 
    for(int i=0;i<pos.count();i++){
        if(pos.at(i)<0){
@@ -406,31 +401,86 @@ QStringList changeDialog::StringSplit(QString datain0){
    }
    auto min = std::min_element(std::begin(pos), std::end(pos));
         //直接赋值表示
-  int smallest = *min;
+  int smallest = *min;//最小值
         //最大值和最小值的位置的表示方式
   auto positionmin = std::distance(std::begin(pos),min);
+
   int posmin = positionmin;
-  int ls=listfuh.at(posmin).count();
-   QString fuh=datain.mid(smallest,ls);
-   int lastpos=datain.lastIndexOf(".");
-   QString last=datain.mid(lastpos+ls,smallest-lastpos-ls);
+
+  int ls=listfuh.at(posmin).count();//符号长度
+
+   QString fuh=datain.mid(smallest,ls);//符号
+
+   QString leftof=datain.left(smallest);//符合左边
+
+   int lastpos=leftof.lastIndexOf(".");//前件
+
+   QString last=leftof.right(leftof.count()-lastpos-1);//后
+
    QString NOTvalue;
    QString pre;
    if(datain.left(3)=="NOT"){
        NOTvalue="NOT";
-       pre=datain.right(datain.count()-3).left(lastpos+1);
+       pre=leftof.right(datain.count()-3).left(lastpos+1);
    }
    else{
        NOTvalue="";
-       pre=datain.left(lastpos+ls);
+       pre=leftof.left(lastpos+1);
    }
    QString value=datain.right(datain.length()-smallest-ls);
+
    last=last.simplified();
    pre=pre.simplified();
    QStringList listout;
+
    listout<<NOTvalue<<pre<<last<<fuh<<value;
+
    return listout;
 }
+//QStringList changeDialog::StringSplit(QString datain0){
+//   QStringList listfuh;
+//   QString datain=datain0.simplified();
+//   listfuh<<"="<<">"<<"<"<<">="<<"<=";
+//   QVector<int>pos;
+//   int pos_0=datain.indexOf(listfuh.at(0));
+//   int pos_1=datain.indexOf(listfuh.at(1));
+//   int pos_2=datain.indexOf(listfuh.at(2));
+//   pos.append(pos_0);
+//   pos.append(pos_1);
+//   pos.append(pos_2);
+
+//   for(int i=0;i<pos.count();i++){
+//       if(pos.at(i)<0){
+//           pos.operator[](i)=1000;
+//       }
+//   }
+//   auto min = std::min_element(std::begin(pos), std::end(pos));
+//        //直接赋值表示
+//  int smallest = *min;
+//        //最大值和最小值的位置的表示方式
+//  auto positionmin = std::distance(std::begin(pos),min);
+//  int posmin = positionmin;
+//  int ls=listfuh.at(posmin).count();
+//   QString fuh=datain.mid(smallest,ls);
+//   int lastpos=datain.lastIndexOf(".");
+//   QString last=datain.mid(lastpos+ls,smallest-lastpos-ls);
+//   QString NOTvalue;
+//   QString pre;
+//   if(datain.left(3)=="NOT"){
+//       NOTvalue="NOT";
+//       pre=datain.right(datain.count()-3).left(lastpos+1);
+//   }
+//   else{
+//       NOTvalue="";
+//       pre=datain.left(lastpos+ls);
+//   }
+//   QString value=datain.right(datain.length()-smallest-ls);
+//   last=last.simplified();
+//   pre=pre.simplified();
+//   QStringList listout;
+//   listout<<NOTvalue<<pre<<last<<fuh<<value;
+//   return listout;
+//}
 bool changeDialog::LoadClassifyFile(){
 //   QString filePath = QFileDialog::getOpenFileName(this,tr("open file")," ", tr("XML files (*.xml);;ALL files (*.*)"));
 //   //QDomDocument doc;
@@ -444,6 +494,8 @@ bool changeDialog::LoadClassifyFile(){
 //       return 0;
 //   }
 //   file.close();
+    if(doc.isNull())
+        return 0;
    QDomElement root=doc.documentElement(); //返回根节点
    QDomNode node=root.firstChild().firstChild(); //获得第一个子节点
    while(!node.isNull())  //如果节点不空
@@ -494,9 +546,9 @@ void changeDialog::addfuhedataitem(QStandardItem *item){
                     QList<QStandardItem*>aItemlist0;
                      QStandardItem*item2 = new QStandardItem(list.at(i).toElement().attribute("中文名称"));
                      aItemlist0<<item2;
-                     for(int i=0;i<list0.count();i++)
+                     for(int j=0;j<list0.count();j++)
                        {
-                           QStandardItem* aItem=new QStandardItem(list.at(i).toElement().attribute(list0.at(i))); //创建Item
+                           QStandardItem* aItem=new QStandardItem(list.at(i).toElement().attribute(list0.at(j))); //创建Item
                            aItemlist0<<aItem;   //添加到容器
                        }
                      item->appendRow(aItemlist0);
@@ -526,9 +578,9 @@ void changeDialog::additem(QDomNode itemnode,QStandardItem *item0){
                     QList<QStandardItem*>aItemlist0;
                      item2 = new QStandardItem(en.attribute("中文名称"));
                      aItemlist0<<item2;
-                     for(int i=0;i<list00.count();i++)
+                     for(int j=0;j<list00.count();j++)
                        {
-                           QStandardItem* aItem=new QStandardItem(en.attribute(list00.at(i))); //创建Item
+                           QStandardItem* aItem=new QStandardItem(en.attribute(list00.at(j))); //创建Item
                            aItemlist0<<aItem;   //添加到容器
                        }
                      item0->appendRow(aItemlist0);

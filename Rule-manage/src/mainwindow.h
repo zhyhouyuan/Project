@@ -37,7 +37,7 @@ public:
     void itemsMove(Node*node);
     Node*getSelectedNode();
     void ruledsp();
-     void LoadClassifyFile();
+
     void onAdd(Node*fromNode,QString name);
     QList<Node*> findlastnode(Node*node,QList<Node*>nodelist);
     //void adjustNodes(Node *fromNode, int nodeSpace);
@@ -54,6 +54,7 @@ public:
     void del_sqltable(QString);
 
     void addwindowshow_node(QStringList);
+    void removeNode(Node*node);
     QSqlDatabase db;
     //QList<mytablemodel*> model;
     QList<QSqlTableModel*> modelin;
@@ -62,6 +63,8 @@ public:
     viewmodel *myviewmodel;
 private:
     Ui::MainWindow *ui;
+
+    void setItemList(QComboBox*a,QComboBox*prea,QList<Node*>&list0,QList<Node*>&listnext,int index);
     int boundaryWidth;
     QPoint clickPos;
 
@@ -75,22 +78,26 @@ private:
     addruleDialog *addwindow;
     changeDialog *changewindow;
     addsqltable *add_table0;
-    QMenu          *m_topMenu;
+
+    QMenu          *m_topMenu,*m_nodeMenu;
     QAction        *m_actAdd;
     QAction        *m_actDel;
     QAction        *m_actDis;
     QAction        *m_actSubmit;
     //QAction        *m_actFind;
     QAction        *m_actBack;
-    TitleBar      *pTitlebar;
+    //TitleBar      *pTitlebar;
 
-    Node  *findnode1,*findnode2,*findnode3,*findnode4,*findnode5;
+    Node  *findnode1;
+    QSlider *m_slider;
 
+    QList<Node*>  findlist1,findlist2,findlist3,findlist4;
     QDomDocument doc;
 
     bool               menuflag;
     int   adjust_n;
     bool rootflag;
+    bool loadfile;
     QString currentTablename;
 
 //    QAction        *m_actInsertBgImage;
@@ -121,9 +128,10 @@ private slots:
     void setcomboxitem(int);
     void hideheadname();
     void open_close(int);
-protected:
-    bool nativeEvent(const QByteArray &eventType, void *message, long *result);
-    void mousePressEvent(QMouseEvent *e);
+    void LoadClassifyFile();
+//protected:
+//    bool nativeEvent(const QByteArray &eventType, void *message, long *result);
+//    void mousePressEvent(QMouseEvent *e);
     // void mouseMoveEvent(QMouseEvent *e);
 
 };

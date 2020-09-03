@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rulebase>
+    <rulesubbase id="0" 规则表所属="雷达 N1 模式1 任务1 A1 ">
+        <rule id="0_1_1">
+            <lhs>
+                <condition id="1" NOT_flag="" value="PlatformObj_1" var="$PlatformObj" prop=".Name" relation="="/>
+				<condition id="2" NOT_flag="" value="10" var="$PlatformObj" prop=".Send1ID" relation="="/>
+				<condition id="3" NOT_flag="" value="HK_1" var="$PlatformObj" prop=".Type" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="25" var="InterNissCmd" prop=".RecieveID" relation="="/>
+            </rhs>
+            <weight v="1">0</weight>
+        </rule>
+        <rule id="0_2_1">
+            <lhs>
+				<condition id="1" NOT_flag="" value="PlatformObj_2" var="$PlatformObj" prop=".Name" relation="="/>
+				<condition id="2" NOT_flag="" value="10" var="$PlatformObj" prop=".Send1ID" relation="="/>
+				<condition id="3" NOT_flag="" value="HK_2" var="$PlatformObj" prop=".Type" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="30" var="InterNissCmd" prop=".RecieveID" relation="="/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+    </rulesubbase>
+    <rulesubbase id="1" 规则表所属="雷达 N1 模式2 任务2 A2 ">
+        <rule id="1_1_1">
+            <lhs>
+				<condition id="1" NOT_flag="" value="1" var="$PlatformObj" prop=".sPosition" relation="="/>
+				<condition id="2" NOT_flag="" value="20" var="$PlatformObj" prop=".Send1ID" relation="="/>
+				<condition id="3" NOT_flag="" value="HK_3" var="$PlatformObj" prop=".Type" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="Enum_time_3" var="InterNissCmd" prop=".Work_time.Enum_time" relation="="/>
+            </rhs>
+            <weight>3</weight>
+        </rule>
+        <rule id="1_1_2">
+            <lhs>
+				<condition id="1" NOT_flag="" value="3" var="$PlatformObj" prop=".sPosition" relation="="/>
+				<condition id="2" NOT_flag="" value="22" var="$PlatformObj" prop=".Send1ID" relation="="/>
+				<condition id="3" NOT_flag="" value="HK_3" var="$PlatformObj" prop=".Type" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="Enum_time_1" var="InterNissCmd" prop=".Work_time.Enum_time" relation="="/>
+            </rhs>
+            <weight>3</weight>
+        </rule>
+    </rulesubbase>
+    <rulesubbase id="2" 规则表所属="雷达 N2 模式1 任务1 A3 ">
+        <rule id="2_1_1">
+            <lhs>
+				<condition id="2" NOT_flag="" value="22" var="$PlatformObj" prop=".Send1ID" relation="="/>
+				<condition id="3" NOT_flag="" value="HK_3" var="$PlatformObj" prop=".Type" relation="="/>
+				<condition id="1" NOT_flag="" value="4" var="$PlatformObj" prop=".sPosition" relation="="/>
+			</lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="55" var="$PlatformObj" prop=".Name" relation="="/>
+            </rhs>
+            <weight>4</weight>
+        </rule>
+        <rule id="2_2_1">
+            <lhs>
+				<condition id="2" NOT_flag="" value="86" var="$PlatformObj" prop=".Send1ID" relation="="/>
+				<condition id="3" NOT_flag="" value="HK_1" var="$PlatformObj" prop=".Type" relation="="/>
+				<condition id="1" NOT_flag="" value="3" var="$PlatformObj" prop=".sPosition" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="15" var="InterNissCmd" prop=".RecieveID" relation="="/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+
+        <rule id="2_2_3">
+            <lhs>
+                <condition id="0" NOT_flag="" value="15" var="PlatformObj" prop=".Name" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="15456" var="InterNissCmd" prop=".RecieveID" relation="="/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="2_3_1">
+            <lhs>
+                <condition id="0" NOT_flag="" value="255" var="PlatformObj" prop=".Send1ID" relation="="/>
+                <condition id="1" NOT_flag="" value="584" var="PlatformObj" prop=".ID" relation="="/>
+                <condition id="2" NOT_flag="" value="" var="" prop="" relation=""/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="Enum_time_1" var="InterNissCmd" prop=".Work_time.Enum_time" relation="="/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+    </rulesubbase>
+    <rulesubbase id="3" 规则表所属="雷达 N2 模式1 任务2 A5 ">
+        <rule id="3_1_1">
+            <lhs>
+                <condition id="0" NOT_flag="" value="Enum_att_1" var="PlatformObj" prop=".Enemy" relation="="/>
+                <condition id="1" NOT_flag="" value="255" var="PlatformObj" prop=".Send1ID" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="2555" var="InterNissCmd" prop=".dSitime" relation="="/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+    </rulesubbase>
+    <rulesubbase id="4" 规则表所属="雷达 N2 模式2 任务2 A4 ">
+        <rule id="4_1_1">
+            <lhs>
+                <condition id="0" NOT_flag="" value="255" var="PlatformObj" prop=".Send1ID" relation="="/>
+                <condition id="1" NOT_flag="" value="35" var="PlatformObj" prop=".sPosition" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="566" var="InterNissCmd" prop=".dLon" relation="="/>
+            </rhs>
+            <weight>4</weight>
+        </rule>
+        <rule id="4_1_2">
+            <lhs>
+                <condition id="0" NOT_flag="" value="85" var="PlatformObj" prop=".ID" relation="="/>
+                <condition id="1" NOT_flag="" value="35" var="PlatformObj" prop=".sPosition" relation="="/>
+            </lhs>
+            <rhs>
+                <action id="0" NOT_flag="" value="5667" var="InterNissCmd" prop=".dLon" relation="="/>
+            </rhs>
+            <weight>4</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_1 -->
+    <rulesubbase id="0" 规则表所属="火控激光雷达 TF_M1 ML_1 Attack_1 A1 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="25" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="26" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="2_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="25" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="25" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="3_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="aa" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="bb" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="4_1">
+            <lhs>
+                <condition prop=".Send1ID" NOT_flag="" relation=">" id="0" value="56" var="PlatformObj"/>
+                <condition prop=".Enum_sur_state" NOT_flag="" relation="=" id="1" value="Enum_sur_0" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dLon" NOT_flag="" relation="=" id="0" value="2555" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_2 -->
+    <rulesubbase id="1" 规则表所属="火控激光雷达 TF_M1 ML_2 Attack_2 A2 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Enum_sur_state" NOT_flag="" relation="=" id="0" value="Enum_sur_1" var="PlatformObj"/>
+                <condition prop=".Type" NOT_flag="" relation="=" id="1" value="2584" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_3" var="InterNissCmd"/>
+            </rhs>
+            <weight>3</weight>
+        </rule>
+        <rule id="1_2">
+            <lhs>
+                <condition prop=".sPosition" NOT_flag="" relation="=" id="0" value="50" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_3" var="InterNissCmd"/>
+            </rhs>
+            <weight>3</weight>
+        </rule>
+        <rule id="2_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="2" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="25" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="3_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="2" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".SendID" NOT_flag="" relation="=" id="0" value="2" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_3 -->
+    <rulesubbase id="2" 规则表所属="火控激光雷达 TF_M3 ML_3 Attack_3 A3 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".dSitime" NOT_flag="" relation="=" id="0" value="25" var="InterNissCmd"/>
+            </lhs>
+            <rhs>
+                <action prop=".Name" NOT_flag="" relation="=" id="0" value="55" var="PlatformObj"/>
+            </rhs>
+            <weight>4</weight>
+        </rule>
+        <rule id="2_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="po" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_1" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="2_2">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="po" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dLon" NOT_flag="" relation="=" id="0" value="25" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="2_3">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="15" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_1" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="2_4">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="15" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dLon" NOT_flag="" relation="=" id="0" value="25" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="3_1">
+            <lhs>
+                <condition prop=".Send1ID" NOT_flag="" relation="=" id="0" value="255" var="$PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_1" var="InterNissCmd"/>
+            </rhs>
+            <weight>22</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_4 -->
+    <rulesubbase id="3" 规则表所属="固定翼机动组件 FMN1 MLN_2 Fly_1 A4 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Work_time.worktime_start" NOT_flag="" relation="=" id="0" value="255" var="PlatformObj"/>
+                <condition prop=".sPosition" NOT_flag="" relation=">" id="1" value="23" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dSitime" NOT_flag="" relation="=" id="0" value="255" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_5 -->
+    <rulesubbase id="4" 规则表所属="固定翼机动组件 FMN2 MLN_3 Fly_2 A5 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Enemy" NOT_flag="" relation="=" id="0" value="Enum_att_1" var="PlatformObj"/>
+                <condition prop=".Send1ID" NOT_flag="" relation="=" id="1" value="255" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dSitime" NOT_flag="" relation="=" id="0" value="2555" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_6 -->
+    <rulesubbase id="5" 规则表所属="固定翼机动组件 FMN2 MLN_2 Fly_3 A6 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="2.22" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="2.22" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="2_1">
+            <lhs>
+                <condition prop=".Enemy" NOT_flag="" relation="=" id="0" value="红方" var="PlatformObj"/>
+                <condition prop=".Work_time.worktime_end" NOT_flag="" relation="=" id="1" value="255" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_1" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="3_1">
+            <lhs>
+                <condition prop=".Work_time.worktime_start" NOT_flag="" relation="=" id="0" value="255" var="PlatformObj"/>
+                <condition prop=".sPosition" NOT_flag="" relation=">" id="1" value="18" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="56" var="InterNissCmd"/>
+            </rhs>
+            <weight>2</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_7 -->
+    <rulesubbase id="6" 规则表所属="火控激光雷达 TF_M1 ML_1 Attack_1 A1 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="29" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="28" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="2_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="35" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="35" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="3_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="aabb" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="bbcc" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="4_1">
+            <lhs>
+                <condition prop=".Send1ID" NOT_flag="" relation=">" id="0" value="66" var="PlatformObj"/>
+                <condition prop=".Enum_sur_state" NOT_flag="" relation="=" id="1" value="Enum_sur_0" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dLon" NOT_flag="" relation="=" id="0" value="255" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_8 -->
+    <rulesubbase id="7" 规则表所属="火控激光雷达 TF_M1 ML_2 Attack_2 A2 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Enum_sur_state" NOT_flag="" relation="=" id="0" value="Enum_sur_1" var="$PlatformObj"/>
+                <condition prop=".Type" NOT_flag="" relation="=" id="1" value="2564" var="$PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_100" var="InterNissCmd"/>
+            </rhs>
+            <weight>3</weight>
+        </rule>
+        <rule id="1_2">
+            <lhs>
+                <condition prop=".sPosition" NOT_flag="" relation="=" id="0" value="50" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_3" var="InterNissCmd"/>
+            </rhs>
+            <weight>3</weight>
+        </rule>
+        <rule id="2_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="4" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="35" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="3_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="4" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".SendID" NOT_flag="" relation="=" id="0" value="4" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_9 -->
+    <rulesubbase id="8" 规则表所属="火控激光雷达 TF_M3 ML_3 Attack_3 A3 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".dSitime" NOT_flag="" relation="=" id="0" value="35" var="InterNissCmd"/>
+            </lhs>
+            <rhs>
+                <action prop=".Name" NOT_flag="" relation="=" id="0" value="65" var="PlatformObj"/>
+            </rhs>
+            <weight>4</weight>
+        </rule>
+        <rule id="2_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="po_1" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="1" value="Enum_time_1" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="2_2">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="po_2" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dLon" NOT_flag="" relation="=" id="0" value="25" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="2_3">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="25" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_1" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="2_4">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="25" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dLon" NOT_flag="" relation="=" id="0" value="35" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+        <rule id="3_1">
+            <lhs>
+                <condition prop=".Send1ID" NOT_flag="" relation="=" id="0" value="256" var="PlatformObj"/>
+                <condition prop=".Send1ID" NOT_flag="" relation="=" id="1" value="26" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_1" var="InterNissCmd"/>
+            </rhs>
+            <weight>22</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_10 -->
+    <rulesubbase id="9" 规则表所属="固定翼机动组件 FMN1 MLN_2 Fly_1 A4 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Work_time.worktime_start" NOT_flag="" relation="=" id="0" value="256" var="PlatformObj"/>
+                <condition prop=".sPosition" NOT_flag="" relation=">" id="1" value="23" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dSitime" NOT_flag="" relation="=" id="0" value="252" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_11 -->
+    <rulesubbase id="10" 规则表所属="固定翼机动组件 FMN2 MLN_3 Fly_2 A5 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Enemy" NOT_flag="" relation="=" id="0" value="Enum_att_1" var="PlatformObj"/>
+                <condition prop=".Send1ID" NOT_flag="" relation="=" id="1" value="252" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".dSitime" NOT_flag="" relation="=" id="0" value="2548" var="InterNissCmd"/>
+            </rhs>
+            <weight>5</weight>
+        </rule>
+    </rulesubbase>
+
+    <!-- group_12 -->
+    <rulesubbase id="11" 规则表所属="固定翼机动组件 FMN2 MLN_2 Fly_3 A6 ">
+        <rule id="1_1">
+            <lhs>
+                <condition prop=".Name" NOT_flag="" relation="=" id="0" value="2.44" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="2.44" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="2_1">
+            <lhs>
+                <condition prop=".Enemy" NOT_flag="" relation="=" id="0" value="红方" var="PlatformObj"/>
+                <condition prop=".Work_time.worktime_end" NOT_flag="" relation="=" id="1" value="255" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".Work_time.Enum_time" NOT_flag="" relation="=" id="0" value="Enum_time_1" var="InterNissCmd"/>
+            </rhs>
+            <weight>0</weight>
+        </rule>
+        <rule id="3_1">
+            <lhs>
+                <condition prop=".Work_time.worktime_start" NOT_flag="" relation="=" id="0" value="256" var="PlatformObj"/>
+                <condition prop=".sPosition" NOT_flag="" relation=">" id="1" value="20" var="PlatformObj"/>
+            </lhs>
+            <rhs>
+                <action prop=".RecieveID" NOT_flag="" relation="=" id="0" value="66" var="InterNissCmd"/>
+            </rhs>
+            <weight>2</weight>
+        </rule>
+    </rulesubbase>
+</rulebase>

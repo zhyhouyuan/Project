@@ -1,9 +1,10 @@
 #include <QtWidgets>
 #include "node.h"
 #include "link.h"
-#include "mainwindow.h"
+#include "src/mainwindow.h"
 #include "scene.h"
 #include"nodeinfodialog.h"
+
 Node::Node(MainWindow *mindMapDlg)
 {
     this->setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
@@ -215,11 +216,17 @@ void Node::mousePressEvent(QGraphicsSceneMouseEvent* event)
 //            if(this->isselect){
 //                this->nodeselet();
 //            }
-        QGraphicsItem::mousePressEvent(event);
+          QGraphicsItem::mousePressEvent(event);
         }
         if(event->modifiers()==Qt::CTRL){
             this->isselect=!this->isselect;
             this->nodeselet();
+        }
+        if(event->modifiers()==Qt::SHIFT){
+            if(this->getLinksTo().isEmpty()){
+               //qDebug()<<"back";
+             //   m_mindMapDlg->removeNode(this);
+            }
         }
      }
     if(event->button()==Qt::RightButton){

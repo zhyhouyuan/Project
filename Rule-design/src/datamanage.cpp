@@ -1,5 +1,4 @@
 #include "datamanage.h"
-
 datamanage::datamanage()
 {
    //this->db=ConnectionPool::openConnection();
@@ -71,7 +70,6 @@ bool datamanage::addtable(QSqlDatabase db,QString name){
 
     bool flag=query.exec(creattable);
 
-    //qDebug()<<flag;
 
     return flag;
 }

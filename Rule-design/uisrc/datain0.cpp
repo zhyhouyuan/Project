@@ -94,7 +94,6 @@ QString datain0::getalltext(){
                 return nullptr;
             }
 
-            //qDebug()<<ui->data_table->itemAt(2,2)->text();
             if(i<m-1){
                 if(!DBox_list.at(i+1)->currentText().isEmpty()){
                      text0=text0+"&";

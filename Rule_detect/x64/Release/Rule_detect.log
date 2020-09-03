@@ -1,0 +1,7 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: 中间目录(x64\Release\)包含从另一个项目(Rule_detect.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
+  Rule_deduce.cpp
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 86 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  Rule_detect.vcxproj -> D:\Develop\rule_engine\Project29\rete\x64\Release\Rule_deduce.exe

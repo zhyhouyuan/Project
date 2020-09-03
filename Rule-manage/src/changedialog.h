@@ -3,7 +3,6 @@
 #include<QTreeView>
 #include <QDialog>
 #include<QDomDocument>
-#include "datain0.h"
 #include <QDialog>
 #include<QSqlRecord>
 #include<QStandardItemModel>

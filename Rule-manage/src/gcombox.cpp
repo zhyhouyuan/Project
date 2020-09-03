@@ -1,6 +1,7 @@
 #include "gcombox.h"
 #include <QStandardItem>
 #include<QStandardItemModel>
+
 Gcombox::Gcombox(QWidget *parent):QComboBox(parent)
 {
    myview = new QTreeView(this);
@@ -70,6 +71,7 @@ void Gcombox::setCText(QString text){
     QAbstractItemModel *model = this->view()->model();
     QModelIndexList Items = model->match(model->index(0, 0),Qt::DisplayRole,QVariant::fromValue(text), 1, Qt::MatchRecursive); // look *
     for(QModelIndex index : Items){
+       // qDebug()<<Items;
     this->setRootModelIndex(index.parent());
     this->setModelColumn(index.column());
     this->setCurrentIndex(index.row());

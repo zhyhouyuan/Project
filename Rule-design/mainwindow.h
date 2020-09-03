@@ -6,6 +6,7 @@
 #include"uisrc/finddialog.h"
 #include"uisrc/logdialog.h"
 //#include"node.h"
+#include"src/m_treeview.h"
 #include <QQueue>
 #include <QMouseEvent>
 #include <windows.h>        //注意头文件
@@ -39,7 +40,7 @@ public:
     Node*getSelectedNode();
     void ruledsp(bool);
 
-    void LoadClassifyFile();
+
     void addCHtoEN(QDomElement );
 
     Node* onAdd(Node*fromNode,QString name,bool rb);
@@ -52,11 +53,12 @@ public:
     void addtable(Node*,bool);
     void createActions();
     void initViewActions();
-    bool add_sqltable(QString);
+    void loadLandscape_D();
+    //bool add_sqltable(QString);
 
-    void checkchildnode(int row,int cloum,QTreeWidgetItem *item,bool rbf);
+    //void checkchildnode(int row,int cloum,QStandardItem *item,bool rbf);
     //void addwindowshow_node(QStringList);
-    QTreeWidgetItem* findchilditem(QTreeWidgetItem *parent,QString text);
+
     QSqlDatabase db;
     //QList<mytablemodel*> model;
     QList<QSqlTableModel*> modelin;
@@ -69,6 +71,7 @@ private:
     Ui::MainWindow *ui;
     const int boundaryWidth =4;
     void Pushbuttonable(bool);
+    void setItemList(QComboBox*a,QComboBox*prea,QList<Node*>&list0,QList<Node*>&list1,int);
     QPoint clickPos;
     //QSplitter *Splitter;
     //QGraphicsView  *m_view;
@@ -83,7 +86,7 @@ private:
     Change_WDialog *m_chang_W;
     addruleDialog *addwindow;
     changeDialog *changewindow;
-    addsqltable *add_table0;
+    //addsqltable *add_table0;
     QMenu          *m_topMenu;
     QAction        *m_actAdd;
     QAction        *m_actDis;
@@ -101,14 +104,16 @@ private:
     bool dis_flag0;
     QList<int> idlist_r,idlist_b;
     QString currentTablename;
-    Node  *findnode1,*findnode2,*findnode3,*findnode4,*findnode5;
+   // QList<Node*> findlist1;
+    QList<Node*>  findlist1,findlist2,findlist3,findlist4,findlist5;
+    QSlider*m_slider;
 private slots:
     void m_submit_clicked();
     void m_findshow();
     void m_logshow();
     void m_dismiss_clicked();
     void loadLandscape();
-    void loadLandscape_D();
+    void LoadClassifyFile();
     void m_find_clicked();
     void m_change_clicked();
     void onUpdateContextMenu(QPoint);
@@ -121,20 +126,22 @@ private slots:
     void addwindowshow();
     void m_addrule();
     void Returnroottable();
-    void updateID();
+    //void updateID();
     void changerule();
     void change_W(int);
-    void findrulebase();
+    //void findrulebase();
     void change_Wclicked();
     void setcomboxitem(int);
     void m_submit_W();
     void hideheadname();
     void changeTable_item(QModelIndex);
     void open_close(int);
+    void item_upcheck();
 protected:
-    bool nativeEvent(const QByteArray &eventType, void *message, long *result);
-    void mousePressEvent(QMouseEvent *e);
-     //void mouseMoveEvent(QMouseEvent *e);
+    bool loadfile;
+//    bool nativeEvent(const QByteArray &eventType, void *message, long *result);
+//    void mousePressEvent(QMouseEvent *e);
+//     //void mouseMoveEvent(QMouseEvent *e);
 };
 
 #endif // MAINWINDOW_H

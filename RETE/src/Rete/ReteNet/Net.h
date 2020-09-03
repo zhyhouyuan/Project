@@ -1,6 +1,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <map>
 #include <unordered_set>
 #include <iterator>
 
@@ -20,6 +21,9 @@ struct StructForHash {
 	Condition c;
 	bool operator== (const StructForHash& rhs) const;
 };
+
+static std::map<ProductionNodePtr, int> Result_W;
+
 
 namespace std {
 	template<>
@@ -62,7 +66,7 @@ class Net {
 public:
 	// ¹¹Ôìº¯Êý
 	Net();
-	void addProduction(const ConditionVector& conditions, const std::vector<Condition>& getter);
+	void addProduction(const ConditionVector& conditions, const std::vector<Condition>& getter,const std::int32_t W);
 	std::vector<ConditionVector> invoke();
 	void clearStatus();
 	const vector<TokenVector>& getOutputConflictSet();
@@ -71,4 +75,5 @@ public:
 	void addFunction(const std::string& key, TestAtTokenFilterNode::JudgeFunctionType judgeFunction);
 	bool Net::findAlph(std::unordered_map<Condition, AlphaMemoryPtr>::iterator &it, Condition c0);
 	size_t findindex(string a0);
+	std::vector<int> out_W;
 };

@@ -12,13 +12,13 @@ string Now() {
 	strftime(tmp, sizeof(tmp), "[%Y-%m-%d %X]", &tt);
 	return string(tmp);
 }
-void CLog::write(const std::string& type, const std::string & infos)
+void CLog::write(const std::string& type, const std::string & infos, std::ofstream& log_file)
 {
-	std::cout << Now() << " ¡¾" << type << "¡¿£º" << infos << std::endl;
+	log_file << Now() << " [" << type << "]£º" << infos << std::endl;
 }
 
-void CLog::write(const std::string & infos)
+void CLog::write(const std::string & infos, std::ofstream& log_file)
 {
-	std::cout << Now() << infos << std::endl;
+	log_file << Now() << infos << std::endl;
 }
 

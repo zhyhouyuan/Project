@@ -14,7 +14,7 @@
    <string>查询窗口</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="source.qrc">
+   <iconset resource="../source.qrc">
     <normaloff>:/image/select.png</normaloff>:/image/select.png</iconset>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
@@ -28,9 +28,15 @@
    </property>
    <property name="font">
     <font>
-     <family>Microsoft New Tai Lue</family>
+     <family>Microsoft YaHei</family>
      <pointsize>10</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 10pt &quot;Microsoft YaHei&quot;;</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -43,14 +49,14 @@
    <property name="geometry">
     <rect>
      <x>280</x>
-     <y>10</y>
+     <y>20</y>
      <width>80</width>
      <height>24</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Agency FB</family>
+     <family>Microsoft YaHei</family>
      <pointsize>12</pointsize>
      <weight>50</weight>
      <italic>false</italic>
@@ -58,7 +64,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Agency FB&quot;;</string>
+    <string notr="true">font: 12pt &quot;Microsoft YaHei&quot;;</string>
    </property>
    <property name="text">
     <string>规则查询</string>
@@ -69,11 +75,23 @@
     <rect>
      <x>30</x>
      <y>70</y>
-     <width>591</width>
-     <height>112</height>
+     <width>601</width>
+     <height>141</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>3</number>
+    </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
+    <property name="rightMargin">
+     <number>3</number>
+    </property>
+    <property name="bottomMargin">
+     <number>3</number>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -87,18 +105,15 @@
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
-          <family>Agency FB</family>
-          <pointsize>12</pointsize>
+          <family>Microsoft YaHei</family>
+          <pointsize>10</pointsize>
           <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Agency FB&quot;;
-
-
-</string>
+         <string notr="true">font: 10pt &quot;Microsoft YaHei&quot;;</string>
         </property>
         <property name="text">
          <string>条件关键字：</string>
@@ -153,15 +168,15 @@ QLineEdit::enabled{
        <widget class="QLabel" name="label_2">
         <property name="font">
          <font>
-          <family>Agency FB</family>
-          <pointsize>12</pointsize>
+          <family>Microsoft YaHei</family>
+          <pointsize>10</pointsize>
           <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Agency FB&quot;;</string>
+         <string notr="true">font: 10pt &quot;Microsoft YaHei&quot;;</string>
         </property>
         <property name="text">
          <string>结果关键字：</string>
@@ -219,18 +234,18 @@ background-color:white;
        <widget class="QLabel" name="label_3">
         <property name="font">
          <font>
-          <family>Agency FB</family>
-          <pointsize>12</pointsize>
+          <family>Microsoft YaHei</family>
+          <pointsize>10</pointsize>
           <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Agency FB&quot;;</string>
+         <string notr="true">font: 10pt &quot;Microsoft YaHei&quot;;</string>
         </property>
         <property name="text">
-         <string>权重选择：</string>
+         <string>权重选择： </string>
         </property>
        </widget>
       </item>
@@ -296,7 +311,7 @@ QLineEdit::Enabled
   </widget>
  </widget>
  <resources>
-  <include location="source.qrc"/>
+  <include location="../source.qrc"/>
  </resources>
  <connections>
   <connection>

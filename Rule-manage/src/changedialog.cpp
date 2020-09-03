@@ -1,6 +1,6 @@
 #include "changedialog.h"
 #include "ui_changedialog.h"
-#include "gcombox.h"
+#include "src/gcombox.h"
 #include "checkdialog.h"
 #include<QMessageBox>
 changeDialog::changeDialog(QWidget *parent) :
@@ -21,6 +21,11 @@ changeDialog::changeDialog(QWidget *parent) :
    ui->table_then->setContextMenuPolicy(Qt::CustomContextMenu);
    ui->table_if->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
    ui->table_then->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+
+   QStringList strs = {"取反符号", "参数目录","变量名","符号关系","值","逻辑关系"};
+   ui->table_if->setHorizontalHeaderLabels(strs);
+   ui->table_then->setHorizontalHeaderLabels(strs);
+  // ui->table_if->setHorizontalHeaderItem()
    connect(ui->push_ok,SIGNAL(clicked()),this,SLOT(send_ch()));
    //connect(ui->table_if,SIGNAL(itemClicked(QTableWidgetItem *)),this,SLOT(setvale_if(QTableWidgetItem *)));
    //connect(ui->table_then,SIGNAL(cellPressed(int,int)),this,SLOT(setvale_then(int,int)));
@@ -51,9 +56,7 @@ void changeDialog::send_ch(){
 }
 void changeDialog::setRuleData(QSqlRecord* record0){
    if(!first_fg){
-       //model->clear();
        first_fg=this->LoadClassifyFile();
-
    }
    if(first_fg){
   // model->clear();
@@ -85,7 +88,7 @@ void changeDialog::setRuleData(QSqlRecord* record0){
       // ui->table_if->setColumnCount(5);
        for(int i=0;i<list_if.count();i++){
            QStringList list0=this->StringSplit(list_if.at(i));
-           qDebug()<<list0;
+
            QComboBox *comBox_not = new QComboBox(this);
            ui->table_if->setCellWidget(i,0,comBox_not);
            QStringList notlist;
@@ -101,6 +104,7 @@ void changeDialog::setRuleData(QSqlRecord* record0){
            Gcombox *comBox = new Gcombox(this);
            comBox->setModel(model);
            comBox->setCText(list0.at(2));
+          // qDebug()<<comBox->currentText();
            //comBox->setEditable(true);
            //comBox->setCurrentText(list0.at(1));
            //comBox->setEditText(list0.at(1));
@@ -167,9 +171,9 @@ void changeDialog::setRuleData(QSqlRecord* record0){
            ui->table_then->setItem(i,1,new QTableWidgetItem(list0.at(1)));
            Gcombox *comBox = new Gcombox(this);
            comBox->setModel(model_then);
-           comBox->setCText(list0.at(2));
            comBox->setflag(i,1);
-           //then_Gcombox.append(comBox);
+           comBox->setCText(list0.at(2));
+
            //comBox->addItem(list0.at(1));
             ui->table_then->setCellWidget(i,2,comBox);
             QComboBox *comBox_1 = new QComboBox(this);
@@ -385,7 +389,7 @@ bool changeDialog::getRuleData(QSqlRecord* record1){
 QStringList changeDialog::StringSplit(QString datain0){
    QStringList listfuh;
    QString datain=datain0.simplified();
-   listfuh<<"="<<">"<<"<"<<">="<<"<=";
+   listfuh<<">="<<"<="<<"="<<">"<<"<";
    QVector<int>pos;
    int pos_0=datain.indexOf(listfuh.at(0));
    int pos_1=datain.indexOf(listfuh.at(1));
@@ -393,6 +397,11 @@ QStringList changeDialog::StringSplit(QString datain0){
    pos.append(pos_0);
    pos.append(pos_1);
    pos.append(pos_2);
+   int pos_3=datain.indexOf(listfuh.at(3));
+   int pos_4=datain.indexOf(listfuh.at(4));
+   pos.append(pos_3);
+   pos.append(pos_4);
+
    for(int i=0;i<pos.count();i++){
        if(pos.at(i)<0){
            pos.operator[](i)=1000;
@@ -400,29 +409,40 @@ QStringList changeDialog::StringSplit(QString datain0){
    }
    auto min = std::min_element(std::begin(pos), std::end(pos));
         //直接赋值表示
-  int smallest = *min;
+  int smallest = *min;//最小值
         //最大值和最小值的位置的表示方式
   auto positionmin = std::distance(std::begin(pos),min);
+
   int posmin = positionmin;
-  int ls=listfuh.at(posmin).count();
-   QString fuh=datain.mid(smallest,ls);
-   int lastpos=datain.lastIndexOf(".");
-   QString last=datain.mid(lastpos+ls,smallest-lastpos-ls);
+
+  int ls=listfuh.at(posmin).count();//符号长度
+
+   QString fuh=datain.mid(smallest,ls);//符号
+
+   QString leftof=datain.left(smallest);//符合左边
+
+   int lastpos=leftof.lastIndexOf(".");//前件
+
+   QString last=leftof.right(leftof.count()-lastpos-1);//后
+
    QString NOTvalue;
    QString pre;
    if(datain.left(3)=="NOT"){
        NOTvalue="NOT";
-       pre=datain.right(datain.count()-3).left(lastpos+1);
+       pre=leftof.right(datain.count()-3).left(lastpos+1);
    }
    else{
        NOTvalue="";
-       pre=datain.left(lastpos+ls);
+       pre=leftof.left(lastpos+1);
    }
    QString value=datain.right(datain.length()-smallest-ls);
+
    last=last.simplified();
    pre=pre.simplified();
    QStringList listout;
+
    listout<<NOTvalue<<pre<<last<<fuh<<value;
+
    return listout;
 }
 bool changeDialog::LoadClassifyFile(){
@@ -488,9 +508,9 @@ void changeDialog::addfuhedataitem(QStandardItem *item){
                     QList<QStandardItem*>aItemlist0;
                      QStandardItem*item2 = new QStandardItem(list.at(i).toElement().attribute("中文名称"));
                      aItemlist0<<item2;
-                     for(int i=0;i<list0.count();i++)
+                     for(int ii=0;ii<list0.count();ii++)
                        {
-                           QStandardItem* aItem=new QStandardItem(list.at(i).toElement().attribute(list0.at(i))); //创建Item
+                           QStandardItem* aItem=new QStandardItem(list.at(i).toElement().attribute(list0.at(ii))); //创建Item
                            aItemlist0<<aItem;   //添加到容器
                        }
                      item->appendRow(aItemlist0);
@@ -520,9 +540,9 @@ void changeDialog::additem(QDomNode itemnode,QStandardItem *item0){
                     QList<QStandardItem*>aItemlist0;
                      item2 = new QStandardItem(en.attribute("中文名称"));
                      aItemlist0<<item2;
-                     for(int i=0;i<list00.count();i++)
+                     for(int ii=0;ii<list00.count();ii++)
                        {
-                           QStandardItem* aItem=new QStandardItem(en.attribute(list00.at(i))); //创建Item
+                           QStandardItem* aItem=new QStandardItem(en.attribute(list00.at(ii))); //创建Item
                            aItemlist0<<aItem;   //添加到容器
                        }
                      item0->appendRow(aItemlist0);

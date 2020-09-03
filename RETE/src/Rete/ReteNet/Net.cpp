@@ -6,6 +6,8 @@
 #include <iostream>
 #include <iomanip>
 
+
+
 ParamTestNodeVector Net::getTestsFromCondition(Condition c, const ConditionVector & condsHigherUp) {
 	ParamTestNodeVector ret;
 	auto&& paramTests = ParamTestNode::generate(c, condsHigherUp);
@@ -81,9 +83,11 @@ Net::Net() : dummyTopNode(ReteNodePtr((ReteNode*)(new DummyTopNode()))) {
 }
 
 size_t i = 0;
-void Net::addProduction(const ConditionVector & conditions, const std::vector<Condition>& getter) {
+void Net::addProduction(const ConditionVector & conditions, const std::vector<Condition>& getter,const std::int32_t W) {
 	auto&& curentNode = buildOrShareNetworkForConditions(dummyTopNode, conditions, {});
-	resultNodes.insert(ProductionNodePtr(new ProductionNode(curentNode, conditions, getter)));
+	auto&& currentNodePtr = ProductionNodePtr(new ProductionNode(curentNode, conditions, getter));
+	resultNodes.insert(currentNodePtr);
+	Result_W[currentNodePtr] = W;
 }
 
 std::vector<ConditionVector> Net::invoke() {
@@ -92,7 +96,14 @@ std::vector<ConditionVector> Net::invoke() {
 	for (auto&& node : resultNodes) {
 		auto&& infos = node->getOutputInfos();
 		std::copy(infos.begin(), infos.end(), std::back_inserter(ret));
-		//cout << "***************************************" << endl;
+		if (infos.size()>0) {
+			int value = Result_W[node];
+			out_W.push_back(value);
+			//out_W.push_back(1);
+			//cout << Result_W[node]<<"aaa"<<endl;
+			//cout << out_W.size()<<endl;
+		}
+		//cout << infos.size() << endl;
 	}
 	return ret;
 }
@@ -141,10 +152,19 @@ std::vector<ConditionVector> Net::TreataddWME(const WME & wme) {
 									it->second->addNewWME(wme);
 									//wme.print(1);
 									auto&& infos = node->getOutputInfos();
-									std::copy(infos.begin(), infos.end(), std::back_inserter(ret));
+									for (int i = 0;i < infos.size();i++) {
+										auto&& fflag = std::find(ret.begin(), ret.end(), infos.at(i));
+										if (fflag == ret.end()) {
+											ret.push_back(infos.at(i));
+											//std::copy(infos.begin(), infos.end(), std::back_inserter(ret));
+											int value = Result_W[node];
+											out_W.push_back(value);
+										}
+									}
 									//cout << "***************************************" << endl;
 									if (!ret.empty()) {
 										//cout << "ConflictSet" << endl;
+
 										ConflictSet.push_back(node->getOutputToken());
 									}
 								}
@@ -201,7 +221,7 @@ void Net::addWME(const WME& wme) {
 					it = conditionToAlphaMemory.begin();
 					//cout << attr<<endl;
 					bool flag=findAlph(it, Condition(id, attr, value, rel));
-					cout << "bbb"<< endl;
+					
 					//cout << (it == conditionToAlphaMemory.end()) << (it == conditionToAlphaMemory.begin()) << endl;
 					if (it != conditionToAlphaMemory.end())
 					{

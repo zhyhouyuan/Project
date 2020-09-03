@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/document-open.png</file>
+        <file>image/list-add.png</file>
+        <file>image/list-remove.png</file>
+        <file>style.qss</file>
+        <file>image/icon.png</file>
+        <file>image/status.png</file>
+    </qresource>
+</RCC>

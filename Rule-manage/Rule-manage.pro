@@ -32,7 +32,6 @@ SOURCES += \
     src/addsqltable.cpp \
     src/changedialog.cpp \
     src/checkdialog.cpp \
-    src/datain0.cpp \
     src/finddialog.cpp \
     src/gcombox.cpp \
     src/logdialog.cpp \
@@ -55,7 +54,6 @@ HEADERS += \
     src/addsqltable.h \
     src/changedialog.h \
     src/checkdialog.h \
-    src/datain0.h \
     src/finddialog.h \
     src/gcombox.h \
     src/logdialog.h \
@@ -77,7 +75,6 @@ FORMS += \
     src/addruledialog.ui \
     src/addsqltable.ui \
     src/changedialog.ui \
-    src/datain0.ui \
     src/finddialog.ui \
     src/logdialog.ui \
     src/mainwindow.ui

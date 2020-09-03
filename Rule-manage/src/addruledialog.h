@@ -4,7 +4,6 @@
 #include <QDialog>
 #include<QStandardItemModel>
 #include<QDomDocument>
-#include "datain0.h"
 namespace Ui {
 class addruleDialog;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 
 #include "Triples.h"
 
@@ -18,6 +19,7 @@ public:
 	Condition getIndex() const;
 	const Condition::Type& getType() const;
 	void print(int level) const;
+	string print_to_log(int level) const;
 	bool operator==(const Condition& rhs) const;
 protected:
 	Type type;
